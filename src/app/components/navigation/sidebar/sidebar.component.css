@@ -1,0 +1,13 @@
+.logo {
+    height: 75px;
+}
+
+li {
+    display: flex;
+    align-items: center;
+}
+
+i {
+    margin-right: 0.5rem;
+    font-size: 1.375rem;
+}
