@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListarCredoresComponent } from './components/credor/listar-credores/listar-credores.component';
+import { ListarCredoresComponent } from './components/pessoa/listar-pessoas/listar-pessoas.component';
 import { SidebarComponent } from './components/navigation/sidebar/sidebar.component';
 
 @NgModule({
