@@ -1,4 +1,4 @@
-import { Pessoa } from "./pessoa/pessoa";
+import { Pessoa } from "./pessoa/Pessoa";
 
 export interface Page {
   content: Pessoa[];
