@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Page } from '../Page';
 import { Pessoa } from './Pessoa';
@@ -8,12 +8,19 @@ import { Pessoa } from './Pessoa';
 })
 export class PessoaService {
 
-  private api: string = 'http://localhost:8080/api/pessoas';
+  private readonly api: string = 'http://localhost:8080/api/pessoas';
 
   constructor(private http: HttpClient) { }
 
-  listar() {
-    return this.http.get<Page>(this.api);
+  listar(page: number = 0) {
+
+    let params = new HttpParams();
+
+    if(page > 0){
+      params = params.set('page', page);
+    }
+
+    return this.http.get<Page>(this.api, { params } );
   }
 
   cadastrar(pessoa: Pessoa) {

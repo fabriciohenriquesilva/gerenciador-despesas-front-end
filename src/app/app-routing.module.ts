@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastrarPessoaComponent } from './components/pessoa/cadastrar-pessoa/cadastrar-pessoa.component';
-import { ListarCredoresComponent } from './components/pessoa/listar-pessoas/listar-pessoas.component';
+import { ListarPessoasComponent } from './components/pessoa/listar-pessoas/listar-pessoas.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'pessoas/listarPessoas',
-    component: ListarCredoresComponent
+    component: ListarPessoasComponent
   },
   {
     path: 'pessoas/cadastro',

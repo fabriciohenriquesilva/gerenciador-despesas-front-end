@@ -5,16 +5,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListarCredoresComponent } from './components/pessoa/listar-pessoas/listar-pessoas.component';
 import { SidebarComponent } from './components/navigation/sidebar/sidebar.component';
 import { CadastrarPessoaComponent } from './components/pessoa/cadastrar-pessoa/cadastrar-pessoa.component';
+import { PaginationComponent } from './components/navigation/pagination/pagination.component';
+import { ListarPessoasComponent } from './components/pessoa/listar-pessoas/listar-pessoas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListarCredoresComponent,
     SidebarComponent,
-    CadastrarPessoaComponent
+    CadastrarPessoaComponent,
+    ListarPessoasComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
