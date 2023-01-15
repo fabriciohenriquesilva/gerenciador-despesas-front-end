@@ -9,6 +9,7 @@ import { SidebarComponent } from './components/navigation/sidebar/sidebar.compon
 import { CadastrarPessoaComponent } from './components/pessoa/cadastrar-pessoa/cadastrar-pessoa.component';
 import { PaginationComponent } from './components/navigation/pagination/pagination.component';
 import { ListarPessoasComponent } from './components/pessoa/listar-pessoas/listar-pessoas.component';
+import { EditarPessoaComponent } from './components/pessoa/editar-pessoa/editar-pessoa.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ListarPessoasComponent } from './components/pessoa/listar-pessoas/lista
     SidebarComponent,
     CadastrarPessoaComponent,
     ListarPessoasComponent,
-    PaginationComponent
+    PaginationComponent,
+    EditarPessoaComponent
   ],
   imports: [
     BrowserModule,

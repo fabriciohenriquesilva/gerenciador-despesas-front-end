@@ -1,6 +1,6 @@
 <div class="container mt-3">
 
-    <h3>Cadastrar nova pessoa</h3>
+    <h3>Cadastro de Pessoa</h3>
     <hr>
 
     <button class="btn btn-primary" routerLink="/pessoas/listarPessoas">Voltar</button>
@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
         <div class="col-6">
             <div class="card">
-                <form [formGroup]="formulario" class="card-body" (submit)="cadastrarPessoa()">
+                <form [formGroup]="formulario" class="card-body" *ngIf="formulario" (ngSubmit)="editar()">
 
                     <div class="mb-3">
                         <label class="form-label">Nome da Pessoa</label>
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="codigoDocumento" class="form-label">{{ tipoDocumento }}</label>
+                        <label for="codigoDocumento" class="form-label">Número do {{ tipoDocumento }}</label>
                         <input formControlName="codigoDocumento" type="text" class="form-control">
 
                         <div class="mensagem__erro" *ngIf="formulario.get('codigoDocumento')?.errors?.['pattern'] 
@@ -55,7 +55,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>
             </div>
         </div>

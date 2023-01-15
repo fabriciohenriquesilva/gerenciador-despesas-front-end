@@ -1,5 +1,5 @@
 <div class="container mt-3">
-    <h1>Cadastro de pessoas</h1>
+    <h3>Cadastro de pessoas</h3>
     <hr>
     <div class="d-flex justify-content-between">
         <div>
@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    <table class="table table-striped table-hover mt-3 border">
+    <table class="table table-striped table-hover mt-3 border" *ngIf="page">
         <thead>
             <tr class="table-header">
                 <th>ID</th>
@@ -15,6 +15,7 @@
                 <th>Tipo Pessoa</th>
                 <th>Tipo Documento</th>
                 <th>Documento</th>
+                <th>Ação</th>
             </tr>
         </thead>
         <tbody>
@@ -24,9 +25,11 @@
                 <td>{{ pessoa.tipoPessoa }}</td>
                 <td>{{ pessoa.tipoDocumento }}</td>
                 <td>{{ pessoa.codigoDocumento }}</td>
+                <td><button class="btn__edit" routerLink="/pessoas/{{pessoa.id}}">Editar</button>
+                </td>
             </tr>
         </tbody>
     </table>
 
-    <app-pagination [page]="page" (eventEmitter)="trocarPagina($event)"></app-pagination>
+    <app-pagination [page]="page" (eventEmitter)="trocarPagina($event)" *ngIf="page"></app-pagination>
 </div>

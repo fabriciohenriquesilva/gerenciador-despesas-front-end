@@ -3,8 +3,10 @@
     border-radius: 8px;
     border: 1px solid #e0e1e3;
 }
-/* 
-th {
-    border-radius: 10px 10px 0 0;
-    background-color: #525fdf;
-} */
+
+.btn__edit {
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: var(--bs-primary);
+}

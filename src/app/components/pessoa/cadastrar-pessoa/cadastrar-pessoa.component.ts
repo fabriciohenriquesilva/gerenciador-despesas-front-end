@@ -11,7 +11,7 @@ import { PessoaService } from '../pessoa.service';
 export class CadastrarPessoaComponent implements OnInit {
 
   formulario!: FormGroup;
-  tipoDocumento: string = 'Documento';
+  tipoDocumento: string = 'CPF';
 
   constructor(private formBuilder: FormBuilder,
     private service: PessoaService,
@@ -22,10 +22,10 @@ export class CadastrarPessoaComponent implements OnInit {
       nome: ['', Validators.compose([
         Validators.required
       ])],
-      tipoPessoa: ['', Validators.compose([
+      tipoPessoa: ['PF', Validators.compose([
         Validators.required
       ])],
-      tipoDocumento: ['', Validators.compose([
+      tipoDocumento: ['CPF', Validators.compose([
         Validators.required
       ])],
       codigoDocumento: ['', Validators.compose([
@@ -39,13 +39,9 @@ export class CadastrarPessoaComponent implements OnInit {
 
     this.limparCaracteresDoCodigoDocumento();
     this.formulario.get('tipoDocumento')?.setValue(this.tipoDocumento);
-    
-    console.log(this.formulario.value);
-    console.log(this.formulario.valid);
-    
+      
     if(this.formulario.valid) {
       this.service.cadastrar(this.formulario.value).subscribe(() => {
-        console.log('sucesso');
         this.router.navigate(['pessoas/listarPessoas']);
       });
     }
@@ -66,7 +62,6 @@ export class CadastrarPessoaComponent implements OnInit {
     if(tipoPessoa === 'PJ') {
       this.tipoDocumento = 'CNPJ';
     }
-    
   }
 
 }

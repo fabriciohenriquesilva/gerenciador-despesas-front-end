@@ -13,3 +13,9 @@ app-root {
     grid-template-rows: 52px minmax(calc(100vh - 52px), auto);
     grid-template-columns: 1fr 5fr;
 }
+
+.mensagem__erro {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    color: red;
+}
