@@ -8,6 +8,11 @@
     box-sizing: border-box;
 }
 
+:root {
+    --gd-primary-color: #1296D2;
+    --gd-dark-primary-color: #0d47a1;
+}
+
 app-root {
     display: grid;
     grid-template-rows: 52px minmax(calc(100vh - 52px), auto);
