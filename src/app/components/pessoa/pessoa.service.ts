@@ -13,7 +13,7 @@ export class PessoaService {
 
   constructor(private http: HttpClient) { }
 
-  listar(page: number = 0): Observable<Page> {
+  listar(page: number = 0): Observable<Page<Pessoa>> {
 
     let params = new HttpParams();
 
@@ -21,7 +21,7 @@ export class PessoaService {
       params = params.set('page', page);
     }
 
-    return this.http.get<Page>(this.api, { params } );
+    return this.http.get<Page<Pessoa>>(this.api, { params } );
   }
 
   cadastrar(pessoa: Pessoa): Observable<Pessoa> {

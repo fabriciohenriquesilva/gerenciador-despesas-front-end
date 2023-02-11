@@ -6,10 +6,10 @@ import { Page } from '../../Page';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.css']
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent<T> implements OnInit {
 
   @Input()
-  page!: Page;
+  page!: Page<T>;
 
   @Output() eventEmitter: EventEmitter<number> = new EventEmitter<number>();
 

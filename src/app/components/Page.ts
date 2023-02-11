@@ -1,7 +1,7 @@
 import { Pessoa } from "./pessoa/Pessoa";
 
-export interface Page {
-  content: Pessoa[];
+export interface Page<T> {
+  content: T[];
   totalElements: number;
   last: boolean;
   totalPages: number;

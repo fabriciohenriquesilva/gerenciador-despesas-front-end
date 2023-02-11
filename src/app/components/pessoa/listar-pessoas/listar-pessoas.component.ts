@@ -11,7 +11,7 @@ import { PessoaService } from '../pessoa.service';
 export class ListarPessoasComponent implements OnInit {
 
   pessoas: Pessoa[] = [];
-  page!: Page;
+  page!: Page<Pessoa>;
 
   constructor(private pessoaService: PessoaService) { }
 
