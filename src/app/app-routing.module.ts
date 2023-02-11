@@ -6,7 +6,7 @@ import { ListarPessoasComponent } from './components/pessoa/listar-pessoas/lista
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'pessoas',
     redirectTo: 'pessoas/listarPessoas',
     pathMatch: 'full'
   },
