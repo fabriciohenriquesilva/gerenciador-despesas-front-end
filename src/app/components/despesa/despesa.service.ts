@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Page } from '../Page';
+import { Subcategoria } from '../subcategoria/Subcategoria';
+import { Categoria } from '../categoria/Categoria';
 import { Despesa } from './Despesa';
 
 @Injectable({
@@ -36,6 +38,20 @@ export class DespesaService {
   editar(despesa: Despesa): Observable<Despesa> {
     const url = `${this.api}/${despesa.id}`;
     return this.http.put<Despesa>(url, despesa);
+  }
+
+  buscarCategorias(): Observable<Categoria[]> {
+    const url = "http://localhost:8080/api/categorias";
+    return this.http.get<Categoria[]>(url);
+  }
+
+  buscarSubcategorias(categoriaId: number): Observable<Subcategoria[]> {
+
+    let params = new HttpParams();
+    params = params.set('categoria', categoriaId);
+
+    const url = "http://localhost:8080/api/subcategorias";
+    return this.http.get<Subcategoria[]>(url, { params });
   }
 
 }

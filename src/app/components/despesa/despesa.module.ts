@@ -6,10 +6,14 @@ import { ListarDespesasComponent } from './listar-despesas/listar-despesas.compo
 import { DespesaRoutingModule } from './despesa-routing.module';
 import { DespesaService } from './despesa.service';
 import { NavigationModule } from '../navigation/navigation.module';
+import { CadastrarDepesaComponent } from './cadastrar-depesa/cadastrar-depesa.component';
+import { DespesaComponent } from './despesa.component';
 
 @NgModule({
   declarations: [
     ListarDespesasComponent,
+    CadastrarDepesaComponent,
+    DespesaComponent,
   ],
   imports: [
     CommonModule,
