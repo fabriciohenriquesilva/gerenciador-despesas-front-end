@@ -5,6 +5,7 @@ import { Page } from '../Page';
 import { Subcategoria } from '../subcategoria/Subcategoria';
 import { Categoria } from '../categoria/Categoria';
 import { Despesa } from './Despesa';
+import { Pessoa } from '../pessoa/Pessoa';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,12 @@ export class DespesaService {
 
     const url = "http://localhost:8080/api/subcategorias";
     return this.http.get<Subcategoria[]>(url, { params });
+  }
+
+  buscarCredor(credorId: number): Observable<Pessoa> {
+    const url = `http://localhost:8080/api/pessoas/${credorId}`;
+
+    return this.http.get<Pessoa>(url);
   }
 
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subcategoria } from '../../subcategoria/Subcategoria';
 import { Categoria } from '../../categoria/Categoria';
 import { DespesaService } from '../despesa.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cadastrar-depesa',
@@ -13,8 +14,9 @@ import { DespesaService } from '../despesa.service';
 export class CadastrarDepesaComponent implements OnInit {
 
   formulario!: FormGroup;
-  categorias!: Categoria[];
+  categorias!: Observable<Categoria[]>;
   subcategorias!: Subcategoria[];
+  credorNome: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,11 +24,19 @@ export class CadastrarDepesaComponent implements OnInit {
     private router: Router ) { }
 
   ngOnInit(): void {
+    this.initForm();    
+    this.buscarCategorias();
+  }
+
+  initForm() {
     this.formulario = this.formBuilder.group({
       descricao: ['', Validators.compose([
         Validators.required
       ])],
       valorGasto: ['', Validators.compose([
+        Validators.required
+      ])],
+      credor: ['', Validators.compose([
         Validators.required
       ])],
       dataDespesa: ['', Validators.compose([
@@ -39,31 +49,33 @@ export class CadastrarDepesaComponent implements OnInit {
         Validators.required
       ])]
     });
-
-    this.buscarCategorias();
   }
 
   cadastrarDespesa() {
     console.log(this.formulario.value);
 
-    // if(this.formulario.valid) {
-    //   this.service.cadastrar(this.formulario.value).subscribe( () => {
-    //     this.router.navigate(['despesas']);
-    //   })
-    // }
+    if(this.formulario.valid) {
+      this.service.cadastrar(this.formulario.value).subscribe( () => {
+        this.router.navigate(['despesas/listar']);
+      });
+    }
   }
 
   buscarCategorias() {
-    this.service.buscarCategorias().subscribe( (categorias) => {
-      this.categorias = categorias;
-    })
+    this.categorias = this.service.buscarCategorias();
   }
 
-  buscarSubcategorias(categoriaId: any) {
+  buscarSubcategorias(categoriaId: number) {
     console.log(categoriaId);
     this.service.buscarSubcategorias(categoriaId).subscribe( (subcategorias) => {
       this.subcategorias = subcategorias;
-    })
+    });
   }
 
+  buscarCredor(credorId: number) {
+    this.service.buscarCredor(credorId).subscribe( credor => {
+      console.log(credor);
+      this.credorNome = credor.nome;
+    });
+  }
 }
