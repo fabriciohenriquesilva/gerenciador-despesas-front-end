@@ -37,8 +37,8 @@ export class DespesaService {
   }
 
   editar(despesa: Despesa): Observable<Despesa> {
-    const url = `${this.api}/${despesa.id}`;
-    return this.http.put<Despesa>(url, despesa);
+    // const url = `${this.api}/${despesa.id}`;
+    return this.http.put<Despesa>(this.api, despesa);
   }
 
   buscarCategorias(): Observable<Categoria[]> {

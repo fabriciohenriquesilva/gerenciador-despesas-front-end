@@ -19,6 +19,7 @@ export class ListarDespesasComponent implements OnInit {
     this.despesaService.listar()
       .subscribe((response) => {
         this.page = response;
+        console.log(response)
       });
   }
 

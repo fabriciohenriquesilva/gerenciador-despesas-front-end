@@ -1,7 +1,7 @@
 <table class="table listras hover mt-3 border" *ngIf="page">
     <thead>
         <tr class="table-header">
-            <!-- <th>ID</th> -->
+            <th>ID</th>
             <th>Descrição</th>
             <th>Data da Despesa</th>
             <th>Valor Gasto</th>
@@ -10,11 +10,11 @@
     </thead>
     <tbody>
         <tr *ngFor="let despesa of page.content">
-            <!-- <td>{{ despesa.id }}</td> -->
+            <td>{{ despesa.id }}</td>
             <td>{{ despesa.descricao }}</td>
             <td>{{ despesa.dataDespesa | date:'dd/MM/yyyy' }}</td>
             <td>{{ despesa.valorGasto | currency:'BRL' }}</td>
-            <td><button class="btn__edit" routerLink="/despesas/{{despesa.id}}">Editar</button>
+            <td><button class="btn__edit" [routerLink]="['/despesas', despesa.id ]">Editar</button>
             </td>
         </tr>
     </tbody>
