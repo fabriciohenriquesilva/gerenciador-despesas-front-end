@@ -8,12 +8,14 @@ import { EditarPessoaComponent } from './editar-pessoa/editar-pessoa.component';
 import { PessoaService } from './pessoa.service';
 import { NavigationModule } from '../navigation/navigation.module';
 import { PessoaRoutingModule } from './pessoa-routing.module';
+import { PessoaComponent } from './pessoa.component';
 
 @NgModule({
   declarations: [
     ListarPessoasComponent,
     CadastrarPessoaComponent,
     EditarPessoaComponent,
+    PessoaComponent,
   ],
   imports: [
     CommonModule,

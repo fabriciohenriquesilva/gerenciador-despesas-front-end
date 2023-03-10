@@ -37,4 +37,9 @@ export class PessoaService {
     const url = `${this.api}/${pessoa.id}`;
     return this.http.put<Pessoa>(url, pessoa);
   }
+
+  excluir(id: number) {
+    const url = `${this.api}/${id}`;
+    return this.http.delete<Pessoa>(url);
+  }
 }

@@ -1,63 +1,55 @@
-<div class="container mt-3">
+<div class="row justify-content-center">
+    <div class="col-6">
+        <div class="card">
+            <form [formGroup]="formulario" class="card-body" *ngIf="formulario" (submit)="cadastrarPessoa()">
 
-    <h3>Cadastrar nova pessoa</h3>
-    <hr>
+                <div class="mb-3">
+                    <label class="form-label">Nome da Pessoa</label>
+                    <input formControlName="nome" type="text" class="form-control" />
 
-    <button class="btn btn-primary" routerLink="/pessoas">Voltar</button>
-
-    <div class="row justify-content-center">
-        <div class="col-6">
-            <div class="card">
-                <form [formGroup]="formulario" class="card-body" (submit)="cadastrarPessoa()">
-
-                    <div class="mb-3">
-                        <label class="form-label">Nome da Pessoa</label>
-                        <input formControlName="nome" type="text" class="form-control" />
-
-                        <div class="mensagem__erro" *ngIf="formulario.get('nome')?.errors?.['required'] 
+                    <div class="mensagem__erro" *ngIf="formulario.get('nome')?.errors?.['required'] 
                             && formulario.get('nome')?.touched">
-                            O campo nome é obrigatório!
-                        </div>
+                        O campo nome é obrigatório!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <p>Selecione o tipo de pessoa:</p>
+
+                    <div class="form-check">
+                        <input formControlName="tipoPessoa" class="form-check-input" type="radio" id="PF" value="PF"
+                            (change)="definirTipoDocumento()">
+                        <label for="PF" class="form-label">Pessoa Física</label>
+                    </div>
+                    <div class="form-check">
+                        <input formControlName="tipoPessoa" class="form-check-input" type="radio" id="PJ" value="PJ"
+                            (change)="definirTipoDocumento()">
+                        <label for="PJ" class="form-label">Pessoa Jurídica</label>
                     </div>
 
-                    <div class="mb-3">
-                        <p>Selecione o tipo de pessoa:</p>
-
-                        <div class="form-check">
-                            <input formControlName="tipoPessoa" class="form-check-input" type="radio"
-                                id="PF" value="PF" (change)="definirTipoDocumento()">
-                            <label for="PF" class="form-label">Pessoa Física</label>
-                        </div>
-                        <div class="form-check">
-                            <input formControlName="tipoPessoa" class="form-check-input" type="radio"
-                                id="PJ" value="PJ" (change)="definirTipoDocumento()">
-                            <label for="PJ" class="form-label">Pessoa Jurídica</label>
-                        </div>
-
-                        <div class="mensagem__erro" *ngIf="formulario.get('tipoPessoa')?.errors?.['required'] 
+                    <div class="mensagem__erro" *ngIf="formulario.get('tipoPessoa')?.errors?.['required'] 
                             && formulario.get('tipoPessoa')?.touched">
-                            Selecione um tipo de pessoa!
-                        </div>
+                        Selecione um tipo de pessoa!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="codigoDocumento" class="form-label">{{ tipoDocumento }}</label>
+                    <input formControlName="codigoDocumento" type="text" class="form-control">
+
+                    <div class="mensagem__erro" *ngIf="formulario.get('codigoDocumento')?.errors?.['pattern'] 
+                            && formulario.get('codigoDocumento')?.touched">
+                        Número do {{ tipoDocumento }} inválido!
                     </div>
 
-                    <div class="mb-3">
-                        <label for="codigoDocumento" class="form-label">{{ tipoDocumento }}</label>
-                        <input formControlName="codigoDocumento" type="text" class="form-control">
-
-                        <div class="mensagem__erro" *ngIf="formulario.get('codigoDocumento')?.errors?.['pattern'] 
+                    <div class="mensagem__erro" *ngIf="formulario.get('codigoDocumento')?.errors?.['required'] 
                             && formulario.get('codigoDocumento')?.touched">
-                            Número do {{ tipoDocumento }} inválido!
-                        </div>
-
-                        <div class="mensagem__erro" *ngIf="formulario.get('codigoDocumento')?.errors?.['required'] 
-                            && formulario.get('codigoDocumento')?.touched">
-                            Número do {{ tipoDocumento }} é obrigatório!
-                        </div>
+                        Número do {{ tipoDocumento }} é obrigatório!
                     </div>
+                </div>
 
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
-                </form>
-            </div>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </form>
         </div>
     </div>
 </div>

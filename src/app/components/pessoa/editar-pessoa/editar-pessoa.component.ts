@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PessoaService } from '../pessoa.service';
 
 @Component({
@@ -22,6 +22,7 @@ export class EditarPessoaComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
+
     this.service.buscarPorId(parseInt(id!)).subscribe((pessoa) => {
       this.formulario = this.formBuilder.group({
         id: [pessoa.id, Validators.compose([Validators.required])],
@@ -33,11 +34,8 @@ export class EditarPessoaComponent implements OnInit {
           Validators.pattern(/^\d{11}$|^\d{14}$|^\d{3}\.\d{3}\.\d{3}-\d{2}$|^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/)
         ])]
       });
-
-      console.log(pessoa)
+      this.definirTipoDocumento();
     });
-
-    this.definirTipoDocumento();
   }
 
   definirTipoDocumento() {
@@ -51,11 +49,8 @@ export class EditarPessoaComponent implements OnInit {
   }
 
   editar() {
-
     this.limparCaracteresDoCodigoDocumento();
 
-    console.log(this.formulario.value)
-      
     if(this.formulario.valid) {
       this.service.editar(this.formulario.value).subscribe(() => {
         this.router.navigate(['pessoas/listarPessoas']);
@@ -68,5 +63,11 @@ export class EditarPessoaComponent implements OnInit {
     this.formulario.get('codigoDocumento')?.setValue(this.formulario.get('codigoDocumento')?.value.replaceAll('-', ''));
     this.formulario.get('codigoDocumento')?.setValue(this.formulario.get('codigoDocumento')?.value.replaceAll('/', ''));
     this.formulario.get('codigoDocumento')?.setValue(this.formulario.get('codigoDocumento')?.value.replaceAll(',', ''));
+  }
+
+  excluir() {
+    this.service.excluir(this.formulario.get('id')?.value).subscribe(() => {
+      this.router.navigate(['pessoas']);
+    });
   }
 }
