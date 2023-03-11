@@ -3,5 +3,6 @@ export interface Pessoa {
     nome: string,
     tipoPessoa: string,
     tipoDocumento: string,
-    codigoDocumento: string
+    codigoDocumento: string,
+    mascaraDocumento: string
 }

@@ -53,7 +53,7 @@ export class EditarPessoaComponent implements OnInit {
 
     if(this.formulario.valid) {
       this.service.editar(this.formulario.value).subscribe(() => {
-        this.router.navigate(['pessoas/listarPessoas']);
+        this.router.navigate(['pessoas']);
       });
     }
   }

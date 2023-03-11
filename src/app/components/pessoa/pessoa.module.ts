@@ -9,6 +9,7 @@ import { PessoaService } from './pessoa.service';
 import { NavigationModule } from '../navigation/navigation.module';
 import { PessoaRoutingModule } from './pessoa-routing.module';
 import { PessoaComponent } from './pessoa.component';
+import { DocumentoPipe } from './documento.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { PessoaComponent } from './pessoa.component';
     CadastrarPessoaComponent,
     EditarPessoaComponent,
     PessoaComponent,
+    DocumentoPipe,
   ],
   imports: [
     CommonModule,

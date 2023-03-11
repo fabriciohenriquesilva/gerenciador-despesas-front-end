@@ -15,7 +15,7 @@
             <td>{{ pessoa.nome }}</td>
             <td>{{ pessoa.tipoPessoa }}</td>
             <td>{{ pessoa.tipoDocumento }}</td>
-            <td>{{ pessoa.codigoDocumento }}</td>
+            <td>{{ pessoa | documento }}</td>
             <td><button class="btn__edit" routerLink="/pessoas/{{pessoa.id}}">Editar</button>
             </td>
         </tr>
