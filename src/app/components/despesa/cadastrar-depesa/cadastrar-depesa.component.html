@@ -53,7 +53,7 @@
                     <label class="form-label">Categoria</label>
                     <select formControlName="categoria" class="form-select"
                         (change)="buscarSubcategorias(formulario.get('categoria')?.value)">
-                        <option *ngFor="let c of categorias | async" value="{{ c.id }}">{{ c.nome }}</option>
+                        <option *ngFor="let c of (categorias$ | async)?.content" value="{{ c.id }}">{{ c.nome }}</option>
                     </select>
 
                     <div class="mensagem__erro" *ngIf="formulario.get('dataDespesa')?.errors?.['required'] 

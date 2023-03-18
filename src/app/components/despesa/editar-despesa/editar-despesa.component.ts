@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { Categoria } from '../../categoria/Categoria';
+import { Page } from '../../Page';
 import { Subcategoria } from '../../subcategoria/Subcategoria';
 import { DespesaService } from '../despesa.service';
 
@@ -16,7 +17,7 @@ import { DespesaService } from '../despesa.service';
 export class EditarDespesaComponent implements OnInit {
 
   formulario!: FormGroup;
-  categorias!: Observable<Categoria[]>;
+  categorias$!: Observable<Page<Categoria>>;
   subcategorias!: Observable<Subcategoria[]>;
   credorNome: string = '';
   subcategoria!: number;
@@ -71,7 +72,7 @@ export class EditarDespesaComponent implements OnInit {
   }
 
   buscarCategorias() {
-    this.categorias = this.service.buscarCategorias();
+    this.categorias$ = this.service.buscarCategorias();
   }
 
   buscarSubcategorias(categoriaId: number) {

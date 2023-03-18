@@ -41,9 +41,9 @@ export class DespesaService {
     return this.http.put<Despesa>(this.api, despesa);
   }
 
-  buscarCategorias(): Observable<Categoria[]> {
+  buscarCategorias(): Observable<Page<Categoria>> {
     const url = "http://localhost:8080/api/categorias";
-    return this.http.get<Categoria[]>(url);
+    return this.http.get<Page<Categoria>>(url);
   }
 
   buscarSubcategorias(categoriaId: number): Observable<Subcategoria[]> {

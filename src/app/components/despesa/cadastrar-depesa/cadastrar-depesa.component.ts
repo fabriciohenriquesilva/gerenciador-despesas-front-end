@@ -5,6 +5,7 @@ import { Subcategoria } from '../../subcategoria/Subcategoria';
 import { Categoria } from '../../categoria/Categoria';
 import { DespesaService } from '../despesa.service';
 import { Observable } from 'rxjs';
+import { Page } from '../../Page';
 
 @Component({
   selector: 'app-cadastrar-depesa',
@@ -14,7 +15,7 @@ import { Observable } from 'rxjs';
 export class CadastrarDepesaComponent implements OnInit {
 
   formulario!: FormGroup;
-  categorias!: Observable<Categoria[]>;
+  categorias$!: Observable<Page<Categoria>>;
   subcategorias!: Subcategoria[];
   credorNome: string = '';
 
@@ -62,7 +63,7 @@ export class CadastrarDepesaComponent implements OnInit {
   }
 
   buscarCategorias() {
-    this.categorias = this.service.buscarCategorias();
+    this.categorias$ = this.service.buscarCategorias();
   }
 
   buscarSubcategorias(categoriaId: number) {
