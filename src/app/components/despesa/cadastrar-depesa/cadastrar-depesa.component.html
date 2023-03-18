@@ -4,12 +4,14 @@
             <form [formGroup]="formulario" class="card-body" (submit)="cadastrarDespesa()">
 
                 <div class="mb-3">
-                    <label class="form-label">Descrição da despesa</label>
-                    <input formControlName="descricao" type="text" class="form-control" />
-
+                    <app-input-field 
+                        formControlName="descricao" 
+                        [label]="'Descrição da despesa'"
+                    ></app-input-field>
+                    
                     <div class="mensagem__erro" *ngIf="formulario.get('descricao')?.errors?.['required'] 
                             && formulario.get('descricao')?.touched">
-                        O campo descricão é obrigatório!
+                        O campo descrição é obrigatório!
                     </div>
                 </div>
 
