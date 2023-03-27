@@ -1,0 +1,19 @@
+<table class="table listras hover mt-3 border" *ngIf="page">
+    <thead>
+        <tr class="table-header">
+            <th>ID</th>
+            <th>Descrição</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let categoria of page.content">
+            <td>{{ categoria.id }}</td>
+            <td>{{ categoria.nome }}</td>
+            <td><button class="btn__edit" [routerLink]="['/categorias', categoria.id ]">Editar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<app-pagination [page]="page" (eventEmitter)="trocarPagina($event)" *ngIf="page"></app-pagination>

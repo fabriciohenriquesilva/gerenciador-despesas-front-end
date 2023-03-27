@@ -11,6 +11,7 @@ import { registerLocaleData } from '@angular/common';
 import { DespesaModule } from './components/despesa/despesa.module';
 import { PessoaModule } from './components/pessoa/pessoa.module';
 import { NavigationModule } from './components/navigation/navigation.module';
+import { CategoriaModule } from './components/categoria/categoria.module';
 
 registerLocaleData(localeBr);
 
@@ -26,7 +27,8 @@ registerLocaleData(localeBr);
     ReactiveFormsModule,
     NavigationModule,
     DespesaModule,
-    PessoaModule
+    PessoaModule,
+    CategoriaModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' }
