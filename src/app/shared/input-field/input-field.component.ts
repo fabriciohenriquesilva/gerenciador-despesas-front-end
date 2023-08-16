@@ -22,7 +22,7 @@ export class InputFieldComponent implements ControlValueAccessor {
   @Input() isReadOnly = false;
 
   private innerValue: any;
-  
+
   get value() {
     return this.innerValue;
   }
