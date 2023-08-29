@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Subcategoria } from '../../subcategoria/Subcategoria';
-import { Categoria } from '../../categoria/Categoria';
-import { DespesaService } from '../despesa.service';
-import { Observable } from 'rxjs';
-import { Page } from '../../Page';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {Subcategoria} from '../../subcategoria/subcategoria';
+import {Categoria} from '../../categoria/categoria';
+import {DespesaService} from '../despesa.service';
+import {Observable} from 'rxjs';
+import {Page} from '../../Page';
 
 @Component({
   selector: 'app-cadastrar-depesa',
@@ -22,10 +22,11 @@ export class CadastrarDepesaComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private service: DespesaService,
-    private router: Router ) { }
+    private router: Router) {
+  }
 
   ngOnInit(): void {
-    this.initForm();    
+    this.initForm();
     this.buscarCategorias();
   }
 
@@ -53,10 +54,8 @@ export class CadastrarDepesaComponent implements OnInit {
   }
 
   cadastrarDespesa() {
-    console.log(this.formulario.value);
-
-    if(this.formulario.valid) {
-      this.service.cadastrar(this.formulario.value).subscribe( () => {
+    if (this.formulario.valid) {
+      this.service.cadastrar(this.formulario.value).subscribe(() => {
         this.router.navigate(['despesas/listar']);
       });
     }
@@ -67,15 +66,13 @@ export class CadastrarDepesaComponent implements OnInit {
   }
 
   buscarSubcategorias(categoriaId: number) {
-    console.log(categoriaId);
-    this.service.buscarSubcategorias(categoriaId).subscribe( (subcategorias) => {
+    this.service.buscarSubcategorias(categoriaId).subscribe((subcategorias) => {
       this.subcategorias = subcategorias;
     });
   }
 
   buscarCredor(credorId: number) {
-    this.service.buscarCredor(credorId).subscribe( credor => {
-      console.log(credor);
+    this.service.buscarCredor(credorId).subscribe(credor => {
       this.credorNome = credor.nome;
     });
   }

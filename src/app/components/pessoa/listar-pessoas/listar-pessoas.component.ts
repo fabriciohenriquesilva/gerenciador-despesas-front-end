@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Page } from '../../Page';
-import { Pessoa } from '../Pessoa';
-import { PessoaService } from '../pessoa.service';
+import {Component, OnInit} from '@angular/core';
+import {Page} from '../../Page';
+import {Pessoa} from '../pessoa';
+import {PessoaService} from '../pessoa.service';
 
 @Component({
   selector: 'app-listar-pessoas',
@@ -13,7 +13,8 @@ export class ListarPessoasComponent implements OnInit {
   pessoas: Pessoa[] = [];
   page!: Page<Pessoa>;
 
-  constructor(private pessoaService: PessoaService) { }
+  constructor(private pessoaService: PessoaService) {
+  }
 
   ngOnInit(): void {
     this.pessoaService.listar()
@@ -24,7 +25,7 @@ export class ListarPessoasComponent implements OnInit {
 
   trocarPagina(pagina: number) {
     this.pessoaService.listar(pagina)
-      .subscribe( response => {
+      .subscribe(response => {
         this.page = response;
       });
   }

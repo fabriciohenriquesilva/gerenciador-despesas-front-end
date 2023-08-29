@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { Pessoa } from './Pessoa';
+import {Pipe, PipeTransform} from '@angular/core';
+import {Pessoa} from './pessoa';
 
 @Pipe({
   name: 'documento'
@@ -10,8 +10,8 @@ export class DocumentoPipe implements PipeTransform {
     let mascara = pessoa.mascaraDocumento;
     let codigo = pessoa.codigoDocumento;
 
-    for(let i = 0; mascara.search('#') != -1; i++) {
-      mascara = mascara.replace('#', codigo.charAt(i) );
+    for (let i = 0; mascara.search('#') != -1; i++) {
+      mascara = mascara.replace('#', codigo.charAt(i));
     }
     return mascara;
   }

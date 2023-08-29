@@ -1,13 +1,13 @@
-import { CurrencyPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import {CurrencyPipe} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
-import { Categoria } from '../../categoria/Categoria';
-import { Page } from '../../Page';
-import { Subcategoria } from '../../subcategoria/Subcategoria';
-import { DespesaService } from '../despesa.service';
+import {Categoria} from '../../categoria/categoria';
+import {Page} from '../../Page';
+import {Subcategoria} from '../../subcategoria/subcategoria';
+import {DespesaService} from '../despesa.service';
 
 @Component({
   selector: 'app-editar-despesa',
@@ -28,13 +28,14 @@ export class EditarDespesaComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private currencyPipe: CurrencyPipe
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.buscarCategorias();
     const id = this.route.snapshot.paramMap.get('id');
 
-    this.service.buscarPorId(parseInt(id!)).subscribe( despesa => {
+    this.service.buscarPorId(parseInt(id!)).subscribe(despesa => {
       this.formulario = this.formBuilder.group({
         id: [despesa.id],
         descricao: [despesa.descricao, Validators.compose([
@@ -58,14 +59,14 @@ export class EditarDespesaComponent implements OnInit {
       });
       this.credorNome = despesa.credor?.nome || '';
       this.subcategorias = this.service.buscarSubcategorias(despesa.categoria.id);
-      this.formulario.patchValue({ valorGasto: this.currencyPipe.transform(despesa.valorGasto, 'BRL', '')});
+      this.formulario.patchValue({valorGasto: this.currencyPipe.transform(despesa.valorGasto, 'BRL', '')});
     });
   }
 
   editarDespesa() {
     // console.log(this.formulario.value);
-    if(this.formulario.valid) {
-      this.service.editar(this.formulario.value).subscribe( () => {
+    if (this.formulario.valid) {
+      this.service.editar(this.formulario.value).subscribe(() => {
         this.router.navigate(['despesas/listar']);
       });
     }
@@ -80,7 +81,7 @@ export class EditarDespesaComponent implements OnInit {
   }
 
   buscarCredor(credorId: number) {
-    this.service.buscarCredor(credorId).subscribe( credor => {
+    this.service.buscarCredor(credorId).subscribe(credor => {
       console.log(credor);
       this.credorNome = credor.nome;
     });

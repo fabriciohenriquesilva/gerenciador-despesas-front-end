@@ -1,11 +1,11 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
-import { Page } from '../Page';
-import { Subcategoria } from '../subcategoria/Subcategoria';
-import { Categoria } from '../categoria/Categoria';
-import { Despesa } from './Despesa';
-import { Pessoa } from '../pessoa/Pessoa';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/internal/Observable';
+import {Page} from '../Page';
+import {Subcategoria} from '../subcategoria/subcategoria';
+import {Categoria} from '../categoria/categoria';
+import {Despesa} from './despesa';
+import {Pessoa} from '../pessoa/pessoa';
 
 @Injectable({
   providedIn: 'root'
@@ -14,17 +14,18 @@ export class DespesaService {
 
   private readonly api: string = 'http://localhost:8080/api/despesas';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   listar(page: number = 0): Observable<Page<Despesa>> {
 
     let params = new HttpParams();
 
-    if(page > 0){
+    if (page > 0) {
       params = params.set('page', page);
     }
 
-    return this.http.get<Page<Despesa>>(this.api, { params } );
+    return this.http.get<Page<Despesa>>(this.api, {params});
   }
 
   cadastrar(despesa: Despesa): Observable<Despesa> {
@@ -52,7 +53,7 @@ export class DespesaService {
     params = params.set('categoria', categoriaId);
 
     const url = "http://localhost:8080/api/subcategorias";
-    return this.http.get<Subcategoria[]>(url, { params });
+    return this.http.get<Subcategoria[]>(url, {params});
   }
 
   buscarCredor(credorId: number): Observable<Pessoa> {

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Page } from '../../Page';
-import { Categoria } from '../Categoria';
-import { CategoriaService } from '../categoria.service';
+import {Component, OnInit} from '@angular/core';
+import {Page} from '../../Page';
+import {Categoria} from '../categoria';
+import {CategoriaService} from '../categoria.service';
 
 @Component({
   selector: 'app-listar-categorias',
@@ -10,18 +10,19 @@ import { CategoriaService } from '../categoria.service';
 })
 export class ListarCategoriasComponent implements OnInit {
 
-  page!: Page<Categoria>; 
+  page!: Page<Categoria>;
 
-  constructor(private service: CategoriaService) { }
+  constructor(private service: CategoriaService) {
+  }
 
   ngOnInit(): void {
-    this.service.listar().subscribe( response => {
+    this.service.listar().subscribe(response => {
       this.page = response;
     });
   }
 
   trocarPagina(pagina: number) {
-    this.service.listar(pagina).subscribe( response => {
+    this.service.listar(pagina).subscribe(response => {
       this.page = response;
     });
   }

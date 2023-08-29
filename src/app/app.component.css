@@ -16,10 +16,24 @@ app-sidebar {
 app-listar-credores {
     grid-column: 2/6;
     grid-row: 2/3;
-/* 
+/*
     display: flex;
     flex-wrap: wrap;
 
     justify-content: space-around;
     align-content: flex-start; */
+}
+
+.main {
+  background-color: #e8edf2;
+}
+
+.content-box {
+  height: calc(100% - 1.5rem);
+
+  margin: 0.75rem;
+  padding: 32px;
+  border: 1px solid #cacaca;
+  border-radius: 4px;
+  background-color: white;
 }
