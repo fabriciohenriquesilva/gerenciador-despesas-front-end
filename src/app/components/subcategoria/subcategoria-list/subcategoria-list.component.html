@@ -17,7 +17,7 @@
     <td>{{ s.nome }}</td>
     <td>{{ s.categoria }}</td>
     <td>
-      <button type="button" class="btn btn-primary" [routerLink]="['cadastro', s.id]">Editar</button>
+      <button type="button" class="btn btn-primary me-2" [routerLink]="['cadastro', s.id]">Editar</button>
       <button type="button" class="btn btn-danger" (click)="excluir(s.id)">Excluir</button>
     </td>
   </tr>

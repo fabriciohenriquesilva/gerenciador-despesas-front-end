@@ -7,10 +7,15 @@ import {SubcategoriaResolverGuard} from "./guards/subcategoria-resolver-guard.se
 const subcategoriaRoutes: Routes = [
 
   { path: '', component: SubcategoriaListComponent },
-  { path: 'cadastro', component: SubcategoriaFormComponent },
+  {
+    path: 'cadastro',
+    component: SubcategoriaFormComponent,
+    data: [{action: 'Cadastrar', title: 'Cadastro de Subcategoria'}]
+  },
   {
     path: 'cadastro/:id',
     component: SubcategoriaFormComponent,
+    data: [{action: 'Salvar Alterações', title: 'Edição de Subcategoria'}],
     resolve: {
       subcategoria: SubcategoriaResolverGuard
     }

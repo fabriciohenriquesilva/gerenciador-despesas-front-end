@@ -1,6 +1,10 @@
-<h3>Cadastro de Subcategoria</h3>
+<h3>{{ title }}</h3>
 <hr>
-<button type="button" class="btn btn-secondary" [routerLink]="'/subcategorias'">Voltar</button>
+<div>
+  <button type="button" class="btn btn-secondary me-2" [routerLink]="'/subcategorias'">Voltar</button>
+  <button type="button" class="btn btn-danger" (click)="excluir(formulario.get('id')?.value)">Excluir</button>
+</div>
+
 
 <div class="row justify-content-center">
   <div class="col-6">
@@ -26,7 +30,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary">{{ action}}</button>
       </form>
     </div>
   </div>

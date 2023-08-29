@@ -19,6 +19,9 @@ export class SubcategoriaFormComponent implements OnInit {
   categorias$!: Observable<Page<Categoria>>;
   subcategoria!: Subcategoria;
 
+  title!: string;
+  action!: string;
+
   constructor(private _formBuilder: FormBuilder,
               private _service: SubcategoriaService,
               private _categoriaService: CategoriaService,
@@ -37,6 +40,9 @@ export class SubcategoriaFormComponent implements OnInit {
     })
 
     this.categorias$ = this.buscarCategorias();
+
+    this.title = this._route.snapshot.data[0]['title'];
+    this.action = this._route.snapshot.data[0]['action'];
   }
 
   private criarForm(): FormGroup {
@@ -59,10 +65,17 @@ export class SubcategoriaFormComponent implements OnInit {
   }
 
   salvar() {
-    console.log(this.formulario.value)
-    this._service.save(this.formulario.value).subscribe(() => {
-      this._router.navigate(['subcategorias']);
-    });
+    this._service.save(this.formulario.value)
+      .subscribe(() => {
+        this._router.navigate(['subcategorias']);
+      });
+  }
+
+  excluir(id: number) {
+    return this._service.remove(id)
+      .subscribe(() => {
+        this._router.navigate(['subcategorias'])
+      });
   }
 
 }
