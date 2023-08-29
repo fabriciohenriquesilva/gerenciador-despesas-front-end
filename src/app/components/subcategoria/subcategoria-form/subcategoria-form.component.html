@@ -4,20 +4,14 @@
 
 <div class="row justify-content-center">
   <div class="col-6">
-    <div class="card">
+    <div>
       <form [formGroup]="formulario" class="card-body" (submit)="salvar()" *ngIf="formulario">
 
-        <div class="mb-3">
           <app-input-field
             formControlName="nome"
             [label]="'Nome da Subcategoria'"
+            [control]="formulario.get('nome')"
           ></app-input-field>
-
-          <div class="mensagem__erro" *ngIf="formulario.get('nome')?.errors?.['required']
-                            && formulario.get('nome')?.touched">
-            O campo nome é obrigatório!
-          </div>
-        </div>
 
         <div class="mb-3">
           <label class="form-label">Categoria</label>
