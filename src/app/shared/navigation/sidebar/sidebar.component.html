@@ -1,0 +1,63 @@
+<div class="logo p-3">Menu</div>
+<hr class="mt-0">
+
+<ul class="navbar-nav mb-auto p-3">
+    <li class="nav-item">
+        <a class="nav-link active" href="#menu-despesas" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="menu-despesas">
+            <i class="bi bi-cash"></i>Despesas</a>
+    </li>
+    <div class="collapse" id="menu-despesas">
+        <ul>
+            <li><a class="sub-itens" [routerLink]="'despesas'">Listagem</a></li>
+        </ul>
+        <ul>
+            <li><a class="sub-itens" href="#">Relatório</a></li>
+        </ul>
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link active" href="#menu-categoria" data-bs-toggle="collapse" role="button">
+            <i class="bi bi-tag"></i>Categorias</a>
+    </li>
+    <div class="collapse" id="menu-categoria">
+        <ul>
+            <li><a class="sub-itens" [routerLink]="'categorias'">Listagem</a></li>
+        </ul>
+        <ul>
+            <li><a class="sub-itens" href="">Relatório</a></li>
+        </ul>
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link active" href="#menu-subcategorias" data-bs-toggle="collapse" role="button">
+            <i class="bi bi-asterisk"></i>Subcategorias</a>
+    </li>
+    <div class="collapse" id="menu-subcategorias">
+        <ul>
+            <li><a class="sub-itens" [routerLink]="'subcategorias'">Listagem</a></li>
+        </ul>
+        <ul>
+            <li><a class="sub-itens" href="">Relatório</a></li>
+        </ul>
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link active" href="#menu-pessoas" data-bs-toggle="collapse" role="button">
+            <i class="bi bi-people"></i>Pessoas</a>
+    </li>
+    <div class="collapse" id="menu-pessoas">
+        <ul>
+            <li><a class="sub-itens" [routerLink]="'pessoas'">Listagem</a></li>
+        </ul>
+        <ul>
+            <li><a class="sub-itens" href="http://localhost:8080/api/pessoas/pdf">Relatório</a></li>
+        </ul>
+    </div>
+</ul>
+
+<hr>
+<div class="p-3">
+    <i class="bi bi-person-fill-gear"></i>
+    Profile
+</div>
+

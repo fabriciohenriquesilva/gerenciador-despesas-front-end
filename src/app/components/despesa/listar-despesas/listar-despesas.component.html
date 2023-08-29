@@ -1,33 +1,23 @@
-<div class="container mt-3">
-    <h3>Cadastro de despesas</h3>
-    <hr>
-    <div class="d-flex justify-content-between">
-        <div>
-            <a class="btn btn-success" routerLink="/despesas/cadastro">Novo</a>
-        </div>
-    </div>
+<table class="table listras hover mt-3 border" *ngIf="page">
+    <thead>
+        <tr class="table-header">
+            <th>ID</th>
+            <th>Descrição</th>
+            <th>Data da Despesa</th>
+            <th>Valor Gasto</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let despesa of page.content">
+            <td>{{ despesa.id }}</td>
+            <td>{{ despesa.descricao }}</td>
+            <td>{{ despesa.dataDespesa | date:'dd/MM/yyyy' }}</td>
+            <td>{{ despesa.valorGasto | currency:'BRL' }}</td>
+            <td><button class="btn__edit" [routerLink]="['/despesas', despesa.id ]">Editar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-    <table class="table listras hover mt-3 border" *ngIf="page">
-        <thead>
-            <tr class="table-header">
-                <!-- <th>ID</th> -->
-                <th>Descrição</th>
-                <th>Data da Despesa</th>
-                <th>Valor Gasto</th>
-                <th>Ação</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let despesa of page.content">
-                <!-- <td>{{ despesa.id }}</td> -->
-                <td>{{ despesa.descricao }}</td>
-                <td>{{ despesa.dataDespesa | date:'dd/MM/yyyy' }}</td>
-                <td>{{ despesa.valorGasto | currency:'BRL' }}</td>
-                <td><button class="btn__edit" routerLink="/despesas/{{despesa.id}}">Editar</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <app-pagination [page]="page" (eventEmitter)="trocarPagina($event)" *ngIf="page"></app-pagination>
-</div>
+<app-pagination [page]="page" (eventEmitter)="trocarPagina($event)" *ngIf="page"></app-pagination>

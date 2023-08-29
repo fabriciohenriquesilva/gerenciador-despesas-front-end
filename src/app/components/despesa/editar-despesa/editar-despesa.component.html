@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+    <div class="col-6">
+        <div class="card">
+            <form [formGroup]="formulario" *ngIf="formulario" class="card-body" (submit)="editarDespesa()">
+
+                <div class="mb-3">
+                    <label class="form-label">Descrição da despesa</label>
+                    <input formControlName="descricao" type="text" class="form-control" />
+
+                    <div class="mensagem__erro" *ngIf="formulario.get('descricao')?.errors?.['required'] 
+                            && formulario.get('descricao')?.touched">
+                        O campo descricão é obrigatório!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Valor gasto</label>
+                    <div class="input-group">
+                        <span class="input-group-text">R$</span>
+                        <input formControlName="valorGasto" type="text" class="form-control" />
+                    </div>
+
+                    <div class="mensagem__erro" *ngIf="formulario.get('valorGasto')?.errors?.['required'] 
+                            && formulario.get('valorGasto')?.touched">
+                        O campo valor gasto é obrigatório!
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="form-label">Credor da despesa</label>
+                    <div class="col-2">
+                        <input type="number" formControlName="credor" class="form-control"
+                            (change)="buscarCredor(formulario.get('credor')?.value)">
+                    </div>
+                    <div class="col">
+                        <input type="text" [value]="credorNome" class="form-control">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Data da despesa</label>
+                    <input formControlName="dataDespesa" type="date" class="form-control" />
+
+                    <div class="mensagem__erro" *ngIf="formulario.get('dataDespesa')?.errors?.['required'] 
+                            && formulario.get('dataDespesa')?.touched">
+                        O campo data da despesa é obrigatório!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Categoria</label>
+                    <select formControlName="categoria" class="form-select"
+                        (change)="buscarSubcategorias(formulario.get('categoria')?.value)">
+                        <option *ngFor="let c of (categorias$ | async)?.content" value="{{ c.id }}">{{ c.nome }}</option>
+                    </select>
+
+                    <div class="mensagem__erro" *ngIf="formulario.get('dataDespesa')?.errors?.['required'] 
+                            && formulario.get('dataDespesa')?.touched">
+                        O campo data da despesa é obrigatório!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Subcategoria</label>
+                    <select formControlName="subcategoria" (load)="buscarSubcategorias(formulario.get('caegoria')?.value)" class="form-select">
+                        <option value="0">Selecione uma categoria</option>
+                        <option *ngFor="let s of subcategorias | async" value="{{ s.id }}">{{ s.nome }}</option>
+                    </select>
+
+                    <div class="mensagem__erro" *ngIf="formulario.get('dataDespesa')?.errors?.['required'] 
+                            && formulario.get('dataDespesa')?.touched">
+                        O campo data da despesa é obrigatório!
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Editar</button>
+            </form>
+        </div>
+    </div>
+</div>

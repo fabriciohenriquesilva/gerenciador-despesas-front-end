@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { PessoaService } from '../pessoa.service';
 
 @Component({
@@ -42,7 +42,7 @@ export class CadastrarPessoaComponent implements OnInit {
       
     if(this.formulario.valid) {
       this.service.cadastrar(this.formulario.value).subscribe(() => {
-        this.router.navigate(['pessoas/listarPessoas']);
+        this.router.navigate(['pessoas']);
       });
     }
   }

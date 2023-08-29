@@ -1,8 +1,8 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Page } from '../Page';
-import { Pessoa } from './Pessoa';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {Page} from '../Page';
+import {Pessoa} from './pessoa';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +11,18 @@ export class PessoaService {
 
   private readonly api: string = 'http://localhost:8080/api/pessoas';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   listar(page: number = 0): Observable<Page<Pessoa>> {
 
     let params = new HttpParams();
 
-    if(page > 0){
+    if (page > 0) {
       params = params.set('page', page);
     }
 
-    return this.http.get<Page<Pessoa>>(this.api, { params } );
+    return this.http.get<Page<Pessoa>>(this.api, {params});
   }
 
   cadastrar(pessoa: Pessoa): Observable<Pessoa> {
@@ -36,5 +37,10 @@ export class PessoaService {
   editar(pessoa: Pessoa): Observable<Pessoa> {
     const url = `${this.api}/${pessoa.id}`;
     return this.http.put<Pessoa>(url, pessoa);
+  }
+
+  excluir(id: number) {
+    const url = `${this.api}/${id}`;
+    return this.http.delete<Pessoa>(url);
   }
 }

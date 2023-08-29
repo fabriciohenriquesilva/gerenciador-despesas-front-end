@@ -1,35 +1,25 @@
-<div class="container mt-3">
-    <h3>Cadastro de pessoas</h3>
-    <hr>
-    <div class="d-flex justify-content-between">
-        <div>
-            <a class="btn btn-success" routerLink="/pessoas/cadastro">Novo</a>
-        </div>
-    </div>
+<table class="table listras hover mt-3 border" *ngIf="page">
+    <thead>
+        <tr class="table-header">
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Tipo Pessoa</th>
+            <th>Tipo Documento</th>
+            <th>Documento</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pessoa of page.content">
+            <td>{{ pessoa.id }}</td>
+            <td>{{ pessoa.nome }}</td>
+            <td>{{ pessoa.tipoPessoa }}</td>
+            <td>{{ pessoa.tipoDocumento }}</td>
+            <td>{{ pessoa | documento }}</td>
+            <td><button class="btn__edit" routerLink="/pessoas/{{pessoa.id}}">Editar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-    <table class="table listras hover mt-3 border" *ngIf="page">
-        <thead>
-            <tr class="table-header">
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Tipo Pessoa</th>
-                <th>Tipo Documento</th>
-                <th>Documento</th>
-                <th>Ação</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let pessoa of page.content">
-                <td>{{ pessoa.id }}</td>
-                <td>{{ pessoa.nome }}</td>
-                <td>{{ pessoa.tipoPessoa }}</td>
-                <td>{{ pessoa.tipoDocumento }}</td>
-                <td>{{ pessoa.codigoDocumento }}</td>
-                <td><button class="btn__edit" routerLink="/pessoas/{{pessoa.id}}">Editar</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <app-pagination [page]="page" (eventEmitter)="trocarPagina($event)" *ngIf="page"></app-pagination>
-</div>
+<app-pagination [page]="page" (eventEmitter)="trocarPagina($event)" *ngIf="page"></app-pagination>

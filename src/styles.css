@@ -19,16 +19,28 @@ app-root {
     grid-template-columns: 1fr 5fr;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .mensagem__erro {
     font-size: 0.875rem;
     margin-top: 0.5rem;
     color: red;
 }
 
-.table-header {
-    background-color: var(--gd-primary-color);
-    color: white;
-}
+/*.table-header {*/
+/*    background-color: var(--gd-primary-color);*/
+/*    color: white;*/
+/*}*/
 
 .btn__edit {
     cursor: pointer;
@@ -37,15 +49,15 @@ app-root {
     color: var(--gd-primary-color);
 }
 
-.listras tr:nth-child(even) {
-    background-color: #f2f2f2;
-    border: #f8f8f8;
-}
+/*.listras tr:nth-child(even) {*/
+/*    background-color: #f2f2f2;*/
+/*    border: #f8f8f8;*/
+/*}*/
 
-.listras tr:nth-child(odd) {
-    border: #f8f8f8;
-}
+/*.listras tr:nth-child(odd) {*/
+/*    border: #f8f8f8;*/
+/*}*/
 
-.hover tbody tr:hover td, .hover tbody tr:hover th {
-    background-color: #dfdfdf;
-}
+/*.hover tbody tr:hover td, .hover tbody tr:hover th {*/
+/*    background-color: #dfdfdf;*/
+/*}*/
