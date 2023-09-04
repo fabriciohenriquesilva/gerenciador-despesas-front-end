@@ -12,7 +12,7 @@ export class RestService<T extends { id?: string | number }> {
     @Inject(String) private _endpoint: string) {
   }
 
-  search(queryOptions?: any): Observable<any> {
+  getAll(queryOptions?: any): Observable<any> {
     return this._http.get(this._endpoint)
       .pipe(take(1));
   }

@@ -23,7 +23,7 @@ export class SubcategoriaListComponent implements OnInit {
     }
 
     private loadData() {
-        this._service.search().subscribe((data) => {
+        this._service.getAll().subscribe((data) => {
             this.page = data;
             this.subcategorias = data.content;
         });
@@ -32,5 +32,12 @@ export class SubcategoriaListComponent implements OnInit {
     excluir(id: number) {
         return this._service.remove(id).subscribe(() => this.loadData());
     }
+
+  trocarPagina(pagina: number) {
+    this._service.getAll(pagina)
+      .subscribe(response => {
+        this.page = response;
+      });
+  }
 
 }
