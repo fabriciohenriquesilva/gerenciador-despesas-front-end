@@ -1,0 +1,62 @@
+<h3>{{ title }}</h3>
+<hr>
+<div>
+  <button type="button" class="btn btn-secondary me-2" [routerLink]="'/pessoas'">Voltar</button>
+  <button type="button" class="btn btn-danger" (click)="excluir(formulario.get('id')?.value)">Excluir</button>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-6">
+    <div class="card">
+      <form [formGroup]="formulario" class="card-body" *ngIf="formulario" (submit)="cadastrarPessoa()">
+
+        <div class="mb-3">
+          <label class="form-label">Nome da Pessoa</label>
+          <input formControlName="nome" type="text" class="form-control" />
+
+          <div class="mensagem__erro" *ngIf="formulario.get('nome')?.errors?.['required']
+                            && formulario.get('nome')?.touched">
+            O campo nome é obrigatório!
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <p>Selecione o tipo de pessoa:</p>
+
+          <div class="form-check">
+            <input formControlName="tipoPessoa" class="form-check-input" type="radio" id="PF" value="PF"
+                   (change)="definirTipoDocumento()">
+            <label for="PF" class="form-label">Pessoa Física</label>
+          </div>
+          <div class="form-check">
+            <input formControlName="tipoPessoa" class="form-check-input" type="radio" id="PJ" value="PJ"
+                   (change)="definirTipoDocumento()">
+            <label for="PJ" class="form-label">Pessoa Jurídica</label>
+          </div>
+
+          <div class="mensagem__erro" *ngIf="formulario.get('tipoPessoa')?.errors?.['required']
+                            && formulario.get('tipoPessoa')?.touched">
+            Selecione um tipo de pessoa!
+          </div>
+        </div>
+
+        <div class="mb-3" *ngIf="formulario.get('tipoPessoa')?.value != ''">
+          <label class="form-label">{{ tipoDocumento }}</label>
+          <input formControlName="codigoDocumento" type="text" class="form-control">
+
+          <div class="mensagem__erro" *ngIf="formulario.get('codigoDocumento')?.errors?.['pattern']
+                            && formulario.get('codigoDocumento')?.touched">
+            Número do {{ tipoDocumento }} inválido!
+          </div>
+
+          <div class="mensagem__erro" *ngIf="formulario.get('codigoDocumento')?.errors?.['required']
+                            && formulario.get('codigoDocumento')?.touched">
+            Número do {{ tipoDocumento }} é obrigatório!
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">{{ action }}</button>
+      </form>
+    </div>
+  </div>
+</div>

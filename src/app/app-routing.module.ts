@@ -13,9 +13,11 @@ const routes: Routes = [
     loadChildren: () => import("./components/subcategoria/subcategoria-routing.module")
       .then(m => m.SubcategoriaRoutingModule)
   },
-  // {
-  //   path: "pessoas"
-  // }
+  {
+    path: "pessoas",
+    loadChildren: () => import("./components/pessoa/pessoa-routing.module")
+      .then(m => m.PessoaRoutingModule)
+  }
 ];
 
 @NgModule({
