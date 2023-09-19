@@ -33,11 +33,11 @@ export class SubcategoriaListComponent implements OnInit {
         return this._service.remove(id).subscribe(() => this.loadData());
     }
 
-  trocarPagina(pagina: number) {
-    this._service.getAll(pagina)
-      .subscribe(response => {
-        this.page = response;
-      });
-  }
+    trocarPagina(pagina: number) {
+        this._service.getAll(pagina)
+            .subscribe(response => {
+                this.page = response;
+            });
+    }
 
 }
