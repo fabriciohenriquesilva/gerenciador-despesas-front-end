@@ -5,7 +5,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PessoaService} from './pessoa.service';
 import {NavigationModule} from '../../shared/navigation/navigation.module';
 import {PessoaRoutingModule} from './pessoa-routing.module';
-import {PessoaComponent} from './pessoa.component';
 import {DocumentoPipe} from './documento.pipe';
 import {PessoaListComponent} from './pessoa-list/pessoa-list.component';
 import {TableModule} from "primeng/table";
@@ -15,7 +14,6 @@ import {PessoaFormComponent} from './pessoa-form/pessoa-form.component';
 
 @NgModule({
     declarations: [
-        PessoaComponent,
         DocumentoPipe,
         PessoaListComponent,
         PessoaFormComponent,
