@@ -22,15 +22,26 @@ export class SubcategoriaListComponent implements OnInit {
         this.loadData();
     }
 
-    private loadData() {
-        this._service.search().subscribe((data) => {
-            this.page = data;
-            this.subcategorias = data.content;
+    private loadData(): void {
+        this._service.getAll().subscribe((page) => {
+            this.atualizarDadosNaPagina(page);
         });
     }
 
     excluir(id: number) {
         return this._service.remove(id).subscribe(() => this.loadData());
+    }
+
+    trocarPagina(pagina: number): void {
+        this._service.getPage(pagina)
+            .subscribe(page => {
+                this.atualizarDadosNaPagina(page);
+            });
+    }
+
+    private atualizarDadosNaPagina(page: Page<Subcategoria>): void {
+        this.page = page;
+        this.subcategorias = page.content;
     }
 
 }

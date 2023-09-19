@@ -1,23 +1,29 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
-import { CadastrarPessoaComponent } from './cadastrar-pessoa/cadastrar-pessoa.component';
-import { EditarPessoaComponent } from './editar-pessoa/editar-pessoa.component';
-import { ListarPessoasComponent } from './listar-pessoas/listar-pessoas.component';
-import { PessoaComponent } from './pessoa.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {PessoaListComponent} from "./pessoa-list/pessoa-list.component";
+import {PessoaFormComponent} from "./pessoa-form/pessoa-form.component";
+import {PessoaResolverGuard} from "./guards/pessoa.resolver.guard";
 
 const pessoaRoutes: Routes = [
-  {
-    path: 'pessoas', component: PessoaComponent, children: [
-      { path: '', component: ListarPessoasComponent },
-      { path: 'cadastro', component: CadastrarPessoaComponent },
-      { path: ':id', component: EditarPessoaComponent }
-    ]
-  }
+    {path: '', component: PessoaListComponent},
+    {
+        path: 'cadastro',
+        component: PessoaFormComponent,
+        data: [{action: 'Cadastrar', title: 'Cadastro de Pessoa'}]
+    },
+    {
+        path: 'cadastro/:id',
+        component: PessoaFormComponent,
+        data: [{action: 'Salvar', title: 'Edição de Pessoa'}],
+        resolve: {
+            pessoa: PessoaResolverGuard
+        }
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(pessoaRoutes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(pessoaRoutes)],
+    exports: [RouterModule]
 })
-export class PessoaRoutingModule { }
+export class PessoaRoutingModule {
+}
