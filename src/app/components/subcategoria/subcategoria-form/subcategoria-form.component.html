@@ -5,30 +5,26 @@
   <button type="button" class="btn btn-danger" (click)="excluir(formulario.get('id')?.value)">Excluir</button>
 </div>
 
-
 <div class="row justify-content-center">
   <div class="col-6">
     <div>
       <form [formGroup]="formulario" class="card-body" (submit)="salvar()" *ngIf="formulario">
 
-          <app-input-field
-            formControlName="nome"
-            [label]="'Nome da Subcategoria'"
-            [control]="formulario.get('nome')"
-          ></app-input-field>
+        <app-input-field
+          formControlName="nome"
+          [label]="'Nome da Subcategoria'"
+          [control]="formulario.get('nome')"
+        ></app-input-field>
 
-        <div class="mb-3">
-          <label class="form-label">Categoria</label>
-          <select formControlName="categoria" class="form-select">
-            <option *ngFor="let c of (categorias$ | async)?.content"
-                    [value]="c.id">{{ c.nome }}</option>
-          </select>
-
-          <div class="mensagem__erro" *ngIf="formulario.get('categoria')?.errors?.['required']
-                            && formulario.get('categoria')?.touched">
-            O campo categoria é obrigatório!
-          </div>
-        </div>
+        <fec-select-input
+          formControlName="categoria"
+          [label]="'Categoria'"
+          [items]="categorias"
+          [key]="'id'"
+          [expression]="'nome'"
+          [placeholder]="'Selecione uma categoria...'"
+          [control]="formulario.get('categoria')"
+        ></fec-select-input>
 
         <button type="submit" class="btn btn-primary">{{ action }}</button>
       </form>
