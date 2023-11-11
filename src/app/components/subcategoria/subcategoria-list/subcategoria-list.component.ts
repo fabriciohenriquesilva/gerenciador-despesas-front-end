@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Subcategoria} from "../subcategoria";
-import {Page} from "../../Page";
+import {Page} from "../../../core/models/page";
 import {SubcategoriaService} from "../subcategoria.service";
 import {Router} from "@angular/router";
 

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Page} from "../../Page";
+import {Page} from "../../../core/models/page";
 import {Pessoa} from "../pessoa";
 import {PessoaService} from "../pessoa.service";
 

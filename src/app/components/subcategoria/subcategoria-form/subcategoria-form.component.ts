@@ -37,7 +37,7 @@ export class SubcategoriaFormComponent implements OnInit {
             }
         })
 
-        this._categoriaService.listar().subscribe((res) => {
+        this._categoriaService.getAll().subscribe((res) => {
             setTimeout(() => this.categorias = res.content);
         });
 
