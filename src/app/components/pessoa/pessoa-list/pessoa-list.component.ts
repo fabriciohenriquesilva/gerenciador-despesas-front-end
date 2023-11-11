@@ -27,4 +27,16 @@ export class PessoaListComponent implements OnInit {
         });
     }
 
+    trocarPagina(pagina: number): void {
+        this._service.getPage(pagina)
+            .subscribe(page => {
+                this.atualizarDadosNaPagina(page);
+            });
+    }
+
+    private atualizarDadosNaPagina(page: Page<Pessoa>): void {
+        this.page = page;
+        this.pessoas = page.content;
+    }
+
 }

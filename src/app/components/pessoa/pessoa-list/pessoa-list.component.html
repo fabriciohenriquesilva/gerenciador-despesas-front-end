@@ -31,3 +31,5 @@
     </tr>
   </ng-template>
 </p-table>
+
+<app-pagination [page]="page" (eventEmitter)="trocarPagina($event)" *ngIf="page"></app-pagination>
