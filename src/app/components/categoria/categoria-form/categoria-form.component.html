@@ -1,0 +1,23 @@
+<h3>{{ title }}</h3>
+<hr>
+<div>
+  <button type="button" class="btn btn-secondary me-2" [routerLink]="'/categorias'">Voltar</button>
+  <button type="button" class="btn btn-danger" (click)="excluir(formulario.get('id')?.value)">Excluir</button>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-6">
+    <div>
+      <form [formGroup]="formulario" class="card-body" (submit)="salvar()" *ngIf="formulario">
+
+        <app-input-field
+          formControlName="nome"
+          [label]="'Nome da Categoria'"
+          [control]="formulario.get('nome')"
+        ></app-input-field>
+
+        <button type="submit" class="btn btn-primary">{{ action }}</button>
+      </form>
+    </div>
+  </div>
+</div>

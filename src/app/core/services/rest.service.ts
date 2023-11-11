@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable, take} from "rxjs";
-import {Page} from "../../components/Page";
+import {Page} from "../models/page";
 
 @Injectable({
     providedIn: 'root'
