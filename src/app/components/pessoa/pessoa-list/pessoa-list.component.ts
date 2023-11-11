@@ -12,6 +12,7 @@ export class PessoaListComponent implements OnInit {
 
     page!: Page<Pessoa>;
     pessoas!: Pessoa[];
+    selectedItems!: Pessoa[];
 
     constructor(private _service: PessoaService) {
     }

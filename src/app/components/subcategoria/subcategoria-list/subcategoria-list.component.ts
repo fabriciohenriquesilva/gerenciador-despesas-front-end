@@ -13,6 +13,7 @@ export class SubcategoriaListComponent implements OnInit {
 
     page!: Page<Subcategoria>;
     subcategorias!: Subcategoria[];
+    selectedItems!: Subcategoria[];
 
     constructor(private _service: SubcategoriaService,
                 private _router: Router) {

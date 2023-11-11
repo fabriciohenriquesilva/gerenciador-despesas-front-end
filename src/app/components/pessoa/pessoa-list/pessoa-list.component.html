@@ -5,20 +5,37 @@
 </div>
 
 <p-table
+  [(selection)]="selectedItems"
   styleClass="p-datatable-striped p-datatable-sm"
   *ngIf="pessoas" [value]="pessoas">
   <ng-template pTemplate="header">
     <tr>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Tipo Pessoa</th>
-      <th>Tipo Documento</th>
-      <th>Documento</th>
+      <th style="width: 4rem">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th pSortableColumn="id">ID
+        <p-sortIcon field="id"></p-sortIcon>
+      </th>
+      <th pSortableColumn="nome">Nome
+        <p-sortIcon field="nome"></p-sortIcon>
+      </th>
+      <th pSortableColumn="tipoPessoa">Tipo Pessoa
+        <p-sortIcon field="tipoPessoa"></p-sortIcon>
+      </th>
+      <th pSortableColumn="tipoDocumento">Tipo Documento
+        <p-sortIcon field="tipoDocumento"></p-sortIcon>
+      </th>
+      <th pSortableColumn="documento">Documento
+        <p-sortIcon field="documento"></p-sortIcon>
+      </th>
       <th>Ações</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-pessoa>
     <tr>
+      <td>
+        <p-tableCheckbox [value]="pessoa"></p-tableCheckbox>
+      </td>
       <td>{{ pessoa.id }}</td>
       <td class="tx-principal-column">{{ pessoa.nome }}</td>
       <td>{{ pessoa.tipoPessoa }}</td>

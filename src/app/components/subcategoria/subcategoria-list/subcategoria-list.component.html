@@ -1,27 +1,46 @@
 <h3>Listagem de Subcategorias</h3>
 <hr>
-<button type="button" class="btn btn-success" [routerLink]="'cadastro'">Adicionar</button>
+<div class="mb-3">
+  <button type="button" class="btn btn-success" [routerLink]="'cadastro'">Adicionar</button>
+</div>
 
-<table class="table table-sm table-striped table-hover mt-3">
-  <thead>
-  <tr class="table-header">
-    <th>ID</th>
-    <th>Nome</th>
-    <th>Categoria</th>
-    <th>Ações</th>
-  </tr>
-  </thead>
-  <tbody class="table-group-divider">
-  <tr *ngFor="let s of subcategorias">
-    <td>{{ s.id }}</td>
-    <td>{{ s.nome }}</td>
-    <td>{{ s.categoria }}</td>
-    <td>
-      <button type="button" class="btn btn-sm btn-primary me-2" [routerLink]="['cadastro', s.id]">Editar</button>
-      <button type="button" class="btn btn-sm btn-danger" (click)="excluir(s.id)">Excluir</button>
-    </td>
-  </tr>
-  </tbody>
-</table>
+<p-table
+  [(selection)]="selectedItems"
+  styleClass="p-datatable-striped p-datatable-sm"
+  *ngIf="subcategorias" [value]="subcategorias">
 
+  <ng-template pTemplate="header">
+    <tr class="table-header">
+      <th style="width: 4rem">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th pSortableColumn="id">ID
+        <p-sortIcon field="id"></p-sortIcon>
+      </th>
+      <th pSortableColumn="nome">Nome
+        <p-sortIcon field="nome"></p-sortIcon>
+      </th>
+      <th pSortableColumn="categoria">Categoria
+        <p-sortIcon field="categoria"></p-sortIcon>
+      </th>
+      <th>Ações</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-subcategoria>
+    <tr>
+      <td>
+        <p-tableCheckbox [value]="subcategoria"></p-tableCheckbox>
+      </td>
+      <td>{{ subcategoria.id }}</td>
+      <td>{{ subcategoria.nome }}</td>
+      <td>{{ subcategoria.categoria }}</td>
+      <td>
+        <button type="button" class="btn btn-sm btn-primary me-2" [routerLink]="['cadastro', subcategoria.id]">Editar
+        </button>
+        <button type="button" class="btn btn-sm btn-danger" (click)="excluir(subcategoria.id)">Excluir</button>
+      </td>
+    </tr>
+
+  </ng-template>
+</p-table>
 <app-pagination [page]="page" (eventEmitter)="trocarPagina($event)" *ngIf="page"></app-pagination>
