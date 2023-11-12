@@ -1,4 +1,4 @@
-import {Component, forwardRef, Input} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, Output} from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 const SELECT_INPUT_VALUE_ACCESSOR: any = {
@@ -39,6 +39,9 @@ export class SelectInputComponent<T> implements ControlValueAccessor {
     @Input()
     items: T[] = [];
 
+    @Output()
+    valueChange: EventEmitter<T> = new EventEmitter<T>();
+
     constructor() {
     }
 
@@ -52,6 +55,7 @@ export class SelectInputComponent<T> implements ControlValueAccessor {
         if (v !== this._value) {
             this._value = v;
             this.onChangeCb(v);
+            this.valueChange.emit(this._value);
         }
     }
 
