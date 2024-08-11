@@ -3,16 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
 
-    margin-bottom: 12px;
-}
-
-.input-control {
-
-    input {
-        width: 100%;
-        border-radius: 4px !important;
-    }
-
+    margin-bottom: 20px;
 }
 
 .input-error {
@@ -23,5 +14,6 @@
 
 .has-error {
     border: 1px solid #E23636;
+    border-radius: 4px !important;
+    margin: 0;
 }
-

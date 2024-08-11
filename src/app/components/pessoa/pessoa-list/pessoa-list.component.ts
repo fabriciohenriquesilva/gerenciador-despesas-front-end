@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Page} from "../../Page";
+import {Page} from "../../../core/models/page";
 import {Pessoa} from "../pessoa";
 import {PessoaService} from "../pessoa.service";
 
@@ -12,6 +12,7 @@ export class PessoaListComponent implements OnInit {
 
     page!: Page<Pessoa>;
     pessoas!: Pessoa[];
+    selectedItems!: Pessoa[];
 
     constructor(private _service: PessoaService) {
     }
@@ -25,6 +26,18 @@ export class PessoaListComponent implements OnInit {
             this.page = data;
             this.pessoas = data.content;
         });
+    }
+
+    trocarPagina(pagina: number): void {
+        this._service.getPage(pagina)
+            .subscribe(page => {
+                this.atualizarDadosNaPagina(page);
+            });
+    }
+
+    private atualizarDadosNaPagina(page: Page<Pessoa>): void {
+        this.page = page;
+        this.pessoas = page.content;
     }
 
 }

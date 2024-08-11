@@ -1,21 +1,21 @@
 import {Component, OnInit} from '@angular/core';
-import {Subcategoria} from "../subcategoria";
 import {Page} from "../../../core/models/page";
-import {SubcategoriaService} from "../subcategoria.service";
+import {CategoriaService} from "../categoria.service";
 import {Router} from "@angular/router";
+import {Categoria} from "../categoria";
 
 @Component({
-    selector: 'app-subcategoria-list',
-    templateUrl: './subcategoria-list.component.html',
-    styleUrls: ['./subcategoria-list.component.scss']
+    selector: 'app-categoria-list',
+    templateUrl: './categoria-list.component.html',
+    styleUrls: ['./categoria-list.component.scss']
 })
-export class SubcategoriaListComponent implements OnInit {
+export class CategoriaListComponent implements OnInit {
 
-    page!: Page<Subcategoria>;
-    subcategorias!: Subcategoria[];
-    selectedItems!: Subcategoria[];
+    page!: Page<Categoria>;
+    categorias!: Categoria[];
+    selectedItems!: Categoria[];
 
-    constructor(private _service: SubcategoriaService,
+    constructor(private _service: CategoriaService,
                 private _router: Router) {
     }
 
@@ -40,9 +40,9 @@ export class SubcategoriaListComponent implements OnInit {
             });
     }
 
-    private atualizarDadosNaPagina(page: Page<Subcategoria>): void {
+    private atualizarDadosNaPagina(page: Page<Categoria>): void {
         this.page = page;
-        this.subcategorias = page.content;
+        this.categorias = page.content;
     }
 
 }

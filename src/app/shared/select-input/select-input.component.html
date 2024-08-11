@@ -1,0 +1,25 @@
+<div class="input-group">
+
+    <label *ngIf="label"
+      [for]="'id'"
+      class="input-label"
+      [textContent]="getLabel()">
+    </label>
+
+  <p-dropdown [options]="items"
+              [id]="'id'"
+              [(ngModel)]="value"
+              [optionLabel]="expression"
+              [optionValue]="key"
+              [showClear]="true"
+              (onBlur)="checkValidity()"
+              [style]="{'minWidth': '100%'}"
+              [placeholder]="placeholder"
+              [ngClass]="hasError()">
+  </p-dropdown>
+
+  <div class="input-error" *ngIf="control?.errors?.['required'] && control?.touched">
+    O campo {{ label }} é obrigatório!
+  </div>
+
+</div>

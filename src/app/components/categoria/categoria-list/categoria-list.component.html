@@ -1,4 +1,4 @@
-<h3>Listagem de Subcategorias</h3>
+<h3>Listagem de Categorias</h3>
 <hr>
 <div class="mb-3">
   <button type="button" class="btn btn-success" [routerLink]="'cadastro'">Adicionar</button>
@@ -7,7 +7,7 @@
 <p-table
   [(selection)]="selectedItems"
   styleClass="p-datatable-striped p-datatable-sm"
-  *ngIf="subcategorias" [value]="subcategorias">
+  *ngIf="categorias" [value]="categorias">
 
   <ng-template pTemplate="header">
     <tr class="table-header">
@@ -20,24 +20,20 @@
       <th pSortableColumn="nome">Nome
         <p-sortIcon field="nome"></p-sortIcon>
       </th>
-      <th pSortableColumn="categoria">Categoria
-        <p-sortIcon field="categoria"></p-sortIcon>
-      </th>
       <th>Ações</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-subcategoria>
+  <ng-template pTemplate="body" let-categoria>
     <tr>
       <td>
-        <p-tableCheckbox [value]="subcategoria"></p-tableCheckbox>
+        <p-tableCheckbox [value]="categoria"></p-tableCheckbox>
       </td>
-      <td>{{ subcategoria.id }}</td>
-      <td>{{ subcategoria.nome }}</td>
-      <td>{{ subcategoria.categoria }}</td>
+      <td>{{ categoria.id }}</td>
+      <td>{{ categoria.nome }}</td>
       <td>
-        <button type="button" class="btn btn-sm btn-primary me-2" [routerLink]="['cadastro', subcategoria.id]">Editar
+        <button type="button" class="btn btn-sm btn-primary me-2" [routerLink]="['cadastro', categoria.id]">Editar
         </button>
-        <button type="button" class="btn btn-sm btn-danger" (click)="excluir(subcategoria.id)">Excluir</button>
+        <button type="button" class="btn btn-sm btn-danger" (click)="excluir(categoria.id)">Excluir</button>
       </td>
     </tr>
 
