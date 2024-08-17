@@ -64,4 +64,12 @@ export class CategoriaFormComponent implements OnInit {
                 this._router.navigate(['categorias']);
             });
     }
+
+    search(event: any) {
+        console.log(event)
+
+        // this._service.getAll(event.query).then(data => {
+        //     this.results = data;
+        // });
+    }
 }

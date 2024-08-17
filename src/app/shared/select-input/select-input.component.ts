@@ -8,7 +8,7 @@ const SELECT_INPUT_VALUE_ACCESSOR: any = {
 }
 
 @Component({
-    selector: 'fec-select-input',
+    selector: 'select-input',
     templateUrl: './select-input.component.html',
     styleUrls: ['./select-input.component.scss'],
     providers: [SELECT_INPUT_VALUE_ACCESSOR]

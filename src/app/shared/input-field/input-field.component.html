@@ -1,27 +1,48 @@
+<!--<div class="input-group">-->
+
+<!--  <div class="input-control">-->
+
+<!--    <label-->
+<!--      [for]="id"-->
+
+<!--      [textContent]="getLabel()">-->
+<!--    </label>-->
+<!--    <input-->
+
+<!--      [type]="type"-->
+<!--      [placeholder]="placeholder"-->
+<!--      [id]="id"-->
+<!--      [readOnly]="!!isReadOnly"-->
+<!--      (blur)="onTouchedCb(null)"-->
+<!--      [(ngModel)]="value"-->
+<!--      [ngClass]="hasError()"-->
+<!--    />-->
+
+<!--  </div>-->
+
+<!--  <div class="input-error" *ngIf="control?.errors?.['required'] && control?.touched">-->
+<!--    O campo {{ label }} é obrigatório!-->
+<!--  </div>-->
+
+<!--</div>-->
+
 <div class="input-group">
-
-  <div class="input-control">
-
+  <div class="input-label">
     <label
-      [for]="id"
-      class="form-label"
-      [textContent]="getLabel()">
-    </label>
+      [for]="field"
+      [textContent]="label"
+    ></label>
+  </div>
+  <div class="input-field">
     <input
-      class="form-control"
-      [type]="type"
+      #inputElement
+      [id]="field"
+      type="text"
+      pInputText
+      [disabled]="!!isDisabled"
       [placeholder]="placeholder"
-      [id]="id"
-      [readOnly]="!!isReadOnly"
-      (blur)="onTouchedCb(null)"
       [(ngModel)]="value"
-      [ngClass]="hasError()"
+      [style.width.px]="width ? width : null"
     />
-
   </div>
-
-  <div class="input-error" *ngIf="control?.errors?.['required'] && control?.touched">
-    O campo {{ label }} é obrigatório!
-  </div>
-
 </div>

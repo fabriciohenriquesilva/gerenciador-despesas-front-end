@@ -6,6 +6,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SelectInputComponent} from './select-input/select-input.component';
 import {DropdownModule} from "primeng/dropdown";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {InputTextModule} from "primeng/inputtext";
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         FormsModule,
         ReactiveFormsModule,
         DropdownModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        InputTextModule
     ],
     exports: [
         InputFieldComponent,

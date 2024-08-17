@@ -10,11 +10,9 @@
     <div>
       <form [formGroup]="formulario" class="card-body" (submit)="salvar()" *ngIf="formulario">
 
-        <app-input-field
-          formControlName="nome"
-          [label]="'Nome da Categoria'"
-          [control]="formulario.get('nome')"
-        ></app-input-field>
+        <text-input formControlName="nome" [label]="'Nome da Categoria'" [field]="'nome'"></text-input>
+
+        <p-autoComplete [ngModel]="formulario.get('pai')" (completeMethod)="search($event)"></p-autoComplete>
 
         <button type="submit" class="btn btn-primary">{{ action }}</button>
       </form>

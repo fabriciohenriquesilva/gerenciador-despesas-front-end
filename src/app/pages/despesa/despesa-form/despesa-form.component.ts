@@ -6,7 +6,6 @@ import {Categoria} from "../../categoria/categoria";
 import {DespesaService} from "../despesa.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Despesa} from "../despesa";
-import {Subcategoria} from "../../subcategoria/subcategoria";
 import {CurrencyPipe} from "@angular/common";
 
 @Component({
@@ -18,7 +17,6 @@ export class DespesaFormComponent implements OnInit {
 
     formulario!: FormGroup;
     categorias$!: Observable<Page<Categoria>>;
-    subcategorias!: Subcategoria[];
     despesas!: Despesa[];
     despesa!: Despesa;
     credorNome: string = '';
@@ -39,7 +37,6 @@ export class DespesaFormComponent implements OnInit {
             if (data['despesa']) {
                 this.despesa = data['despesa'];
                 this.preencherForm(this.despesa);
-                this.buscarSubcategorias(this.despesa.categoria.id);
                 this.formulario.patchValue({valorGasto: this.currencyPipe.transform(this.despesa.valorGasto, 'BRL', '')});
             } else {
                 this.formulario = this.initForm();
@@ -83,7 +80,6 @@ export class DespesaFormComponent implements OnInit {
             credor: [despesa.credor?.id, Validators.required],
             dataDespesa: [despesa.dataDespesa, Validators.required],
             categoria: [despesa.categoria?.id, Validators.required],
-            subcategoria: [despesa.subcategoria?.id, Validators.required]
         });
     }
 
@@ -99,12 +95,12 @@ export class DespesaFormComponent implements OnInit {
         this.categorias$ = this._service.buscarCategorias();
     }
 
-    buscarSubcategorias(categoriaId: number) {
-        console.log(categoriaId)
-        this._service.buscarSubcategorias(categoriaId).subscribe((subcategorias) => {
-            this.subcategorias = subcategorias;
-        });
-    }
+    // buscarSubcategorias(categoriaId: number) {
+    //     console.log(categoriaId)
+    //     this._service.buscarSubcategorias(categoriaId).subscribe((subcategorias) => {
+    //         this.subcategorias = subcategorias;
+    //     });
+    // }
 
     buscarCredor(credorId: number) {
         this._service.buscarCredor(credorId).subscribe(credor => {

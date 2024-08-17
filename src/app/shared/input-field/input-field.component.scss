@@ -1,27 +1,29 @@
 .input-group {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    margin-bottom: 12px;
+    align-items: baseline;
 }
 
-.input-control {
+.input-label {
+    width: 160px;
 
-    input {
-        width: 100%;
-        border-radius: 4px !important;
+    label {
+        display: block;
+        text-align: right;
     }
-
 }
 
-.input-error {
-    margin-top: 4px;
-    font-size: 0.875rem;
-    color: #E23636;
+.input-field {
+    margin: 6px 0;
 }
 
-.has-error {
-    border: 1px solid #E23636;
+label {
+    margin-right: 12px;
 }
 
+input {
+    width: 380px;
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+}

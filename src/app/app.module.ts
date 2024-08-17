@@ -8,11 +8,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {registerLocaleData} from '@angular/common';
 
-import {DespesaModule} from './components/despesa/despesa.module';
-import {PessoaModule} from './components/pessoa/pessoa.module';
+import {DespesaModule} from './pages/despesa/despesa.module';
+import {PessoaModule} from './pages/pessoa/pessoa.module';
 import {NavigationModule} from './shared/navigation/navigation.module';
-import {CategoriaModule} from './components/categoria/categoria.module';
-import {SubcategoriaModule} from "./components/subcategoria/subcategoria.module";
+import {CategoriaModule} from './pages/categoria/categoria.module';
 
 registerLocaleData(localeBr);
 
@@ -30,7 +29,6 @@ registerLocaleData(localeBr);
     DespesaModule,
     PessoaModule,
     CategoriaModule,
-    SubcategoriaModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt-BR'}

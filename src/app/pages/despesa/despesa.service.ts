@@ -2,7 +2,6 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/internal/Observable';
 import {Page} from '../../core/models/page';
-import {Subcategoria} from '../subcategoria/subcategoria';
 import {Categoria} from '../categoria/categoria';
 import {Despesa} from './despesa';
 import {Pessoa} from '../pessoa/pessoa';
@@ -22,15 +21,6 @@ export class DespesaService extends RestService<Despesa> {
     buscarCategorias(): Observable<Page<Categoria>> {
         const url = "http://localhost:8080/api/categorias";
         return this._http.get<Page<Categoria>>(url);
-    }
-
-    buscarSubcategorias(categoriaId: number): Observable<Subcategoria[]> {
-
-        let params = new HttpParams();
-        params = params.set('categoria', categoriaId);
-
-        const url = "http://localhost:8080/api/subcategorias";
-        return this._http.get<Subcategoria[]>(url, {params});
     }
 
     buscarCredor(credorId: number): Observable<Pessoa> {
