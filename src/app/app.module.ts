@@ -12,28 +12,30 @@ import {DespesaModule} from './pages/despesa/despesa.module';
 import {PessoaModule} from './pages/pessoa/pessoa.module';
 import {NavigationModule} from './shared/navigation/navigation.module';
 import {CategoriaModule} from './pages/categoria/categoria.module';
+import {ButtonModule} from "primeng/button";
 
 registerLocaleData(localeBr);
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NavigationModule,
-    DespesaModule,
-    PessoaModule,
-    CategoriaModule,
-  ],
-  providers: [
-    {provide: LOCALE_ID, useValue: 'pt-BR'}
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NavigationModule,
+        DespesaModule,
+        PessoaModule,
+        CategoriaModule,
+        ButtonModule,
+    ],
+    providers: [
+        {provide: LOCALE_ID, useValue: 'pt-BR'}
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }
