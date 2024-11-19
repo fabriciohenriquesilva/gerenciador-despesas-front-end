@@ -1,0 +1,21 @@
+.input-group {
+    display: flex;
+    align-items: baseline;
+}
+
+.input-label {
+    width: 160px;
+
+    label {
+        display: block;
+        text-align: right;
+    }
+}
+
+.input-field {
+    margin: 6px 0;
+}
+
+label {
+    margin-right: 12px;
+}

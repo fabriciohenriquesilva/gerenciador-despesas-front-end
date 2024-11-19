@@ -11,7 +11,7 @@ import {InputTextModule} from "primeng/inputtext";
 @NgModule({
     declarations: [
         InputFieldComponent,
-        SelectInputComponent
+        SelectInputComponent,
     ],
     imports: [
         CommonModule,
@@ -19,11 +19,11 @@ import {InputTextModule} from "primeng/inputtext";
         ReactiveFormsModule,
         DropdownModule,
         BrowserAnimationsModule,
-        InputTextModule
+        InputTextModule,
     ],
     exports: [
         InputFieldComponent,
-        SelectInputComponent
+        SelectInputComponent,
     ]
 })
 export class SharedModule {

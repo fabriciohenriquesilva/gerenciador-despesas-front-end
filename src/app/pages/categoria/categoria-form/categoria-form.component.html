@@ -1,21 +1,33 @@
-<h3>{{ title }}</h3>
-<hr>
-<div>
-  <button type="button" class="btn btn-secondary me-2" [routerLink]="'/categorias'">Voltar</button>
-  <button type="button" class="btn btn-danger" (click)="excluir(formulario.get('id')?.value)">Excluir</button>
+<div style="display: flex; justify-content: space-between">
+    <h3>{{ title }}</h3>
+    <hr>
+    <div>
+        <button pButton label="Salvar" type="submit" (click)="salvar()"></button>
+        <button pButton label="Excluir" class="p-button-danger" (click)="excluir(formulario.get('id')?.value)"></button>
+        <button pButton label="Voltar" [routerLink]="'/categorias'"></button>
+    </div>
 </div>
 
+<hr>
+
 <div class="row justify-content-center">
-  <div class="col-6">
-    <div>
-      <form [formGroup]="formulario" class="card-body" (submit)="salvar()" *ngIf="formulario">
+    <form [formGroup]="formulario" class="card-body" *ngIf="formulario">
 
-        <text-input formControlName="nome" [label]="'Nome da Categoria'" [field]="'nome'"></text-input>
+        <text-input  formControlName="nome" [label]="'Nome da Categoria'"
+                    [field]="'nome'"></text-input>
 
-        <p-autoComplete [ngModel]="formulario.get('pai')" (completeMethod)="search($event)"></p-autoComplete>
+        <div class="input-group">
+            <div class="input-label">
+                <label
+                    [for]="'pai'"
+                    [textContent]="'Categoria Pai'">
+                </label>
+            </div>
+            <div class="p-fluid p-formgrid grid">
+                <p-autoComplete [inputStyle]="{'width':'380px'}" formControlName="pai" (completeMethod)="search($event)" [suggestions]="categorias" field="nome" [dropdown]="true"></p-autoComplete>
+            </div>
+        </div>
 
-        <button type="submit" class="btn btn-primary">{{ action }}</button>
-      </form>
-    </div>
-  </div>
+    </form>
+
 </div>

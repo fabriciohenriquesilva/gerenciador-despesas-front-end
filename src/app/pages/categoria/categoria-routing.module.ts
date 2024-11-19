@@ -10,12 +10,12 @@ const categoriaRoutes: Routes = [
     {
         path: 'cadastro',
         component: CategoriaFormComponent,
-        data: [{action: 'Cadastrar', title: 'Cadastro de Categoria'}]
+        data: [{title: 'Nova Categoria'}]
     },
     {
         path: 'cadastro/:id',
         component: CategoriaFormComponent,
-        data: [{action: 'Salvar Alterações', title: 'Edição de Categoria'}],
+        data: [{title: 'Cadastro de Categoria'}],
         resolve: {
             categoria: CategoriaResolverGuard
         }

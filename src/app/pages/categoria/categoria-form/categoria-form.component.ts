@@ -16,16 +16,15 @@ export class CategoriaFormComponent implements OnInit {
     categorias: Categoria[] = [];
 
     title!: string;
-    action!: string;
 
-    constructor(private _formBuilder: FormBuilder,
-                private _service: CategoriaService,
-                private _router: Router,
-                private _route: ActivatedRoute) {
+    constructor(private formBuilder: FormBuilder,
+                private service: CategoriaService,
+                private router: Router,
+                private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {
-        this._route.data.subscribe((data) => {
+        this.route.data.subscribe((data) => {
             if (data['categoria']) {
                 this.categoria = data['categoria'];
                 this.preencherForm(this.categoria);
@@ -34,42 +33,41 @@ export class CategoriaFormComponent implements OnInit {
             }
         });
 
-        this.title = this._route.snapshot.data[0]['title'];
-        this.action = this._route.snapshot.data[0]['action'];
+        this.title = this.route.snapshot.data[0]['title'];
     }
 
     private criarForm(): FormGroup {
-        return this._formBuilder.group({
-            nome: ['', Validators.required]
+        return this.formBuilder.group({
+            nome: ['', Validators.required],
+            pai: ['']
         });
     }
 
-    private preencherForm(categoria: Categoria) {
-        this.formulario = this._formBuilder.group({
+    private preencherForm(categoria: Categoria): void {
+        this.formulario = this.formBuilder.group({
             id: [categoria.id, Validators.required],
-            nome: [categoria.nome, Validators.required]
+            nome: [categoria.nome, Validators.required],
+            pai: [categoria.pai]
         });
     }
 
     salvar() {
-        this._service.save(this.formulario.value)
+        return this.service.save(this.formulario.value)
             .subscribe(() => {
-                this._router.navigate(['categorias']);
+                this.router.navigate(['categorias']).then();
             });
     }
 
     excluir(id: number) {
-        return this._service.remove(id)
+        return this.service.remove(id)
             .subscribe(() => {
-                this._router.navigate(['categorias']);
+                this.router.navigate(['categorias']).then();
             });
     }
 
     search(event: any) {
-        console.log(event)
-
-        // this._service.getAll(event.query).then(data => {
-        //     this.results = data;
-        // });
+        return this.service.getAll(event.query).subscribe(data => {
+            this.categorias = data.content;
+        });
     }
 }

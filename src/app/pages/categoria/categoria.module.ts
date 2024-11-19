@@ -10,6 +10,7 @@ import {TableModule} from "primeng/table";
 import {CategoriaFormComponent} from './categoria-form/categoria-form.component';
 import {SharedModule} from "../../shared/shared.module";
 import {AutoCompleteModule} from "primeng/autocomplete";
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import {AutoCompleteModule} from "primeng/autocomplete";
         TableModule,
         SharedModule,
         AutoCompleteModule,
-        FormsModule
+        FormsModule,
+        ButtonModule
     ],
     providers: [
         CategoriaService

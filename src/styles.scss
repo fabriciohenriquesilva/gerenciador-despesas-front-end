@@ -64,3 +64,15 @@ input[type=number] {
 /*.hover tbody tr:hover td, .hover tbody tr:hover th {*/
 /*    background-color: #dfdfdf;*/
 /*}*/
+
+// override default classes
+
+.p-inputtext {
+    padding: 6px !important;
+    font-size: 16px !important;
+}
+
+div > .p-button {
+    padding: 6px 12px !important;
+    margin: 0 4px !important;
+}
