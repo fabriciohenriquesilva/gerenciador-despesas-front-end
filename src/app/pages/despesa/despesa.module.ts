@@ -8,6 +8,7 @@ import {DespesaListComponent} from './despesa-list/despesa-list.component';
 import {DespesaFormComponent} from './despesa-form/despesa-form.component';
 import {TableModule} from "primeng/table";
 import {SharedModule} from "../../shared/shared.module";
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import {SharedModule} from "../../shared/shared.module";
         DespesaRoutingModule,
         NavigationModule,
         SharedModule,
-        TableModule
+        TableModule,
+        ButtonModule
     ],
     providers: [
         DespesaService,

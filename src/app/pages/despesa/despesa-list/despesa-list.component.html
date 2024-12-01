@@ -1,8 +1,12 @@
-<h3>Listagem de Despesas</h3>
-<hr>
-<div class="mb-3">
-  <button type="button" class="btn btn-success" [routerLink]="'cadastro'">Adicionar</button>
+<div style="display: flex; justify-content: space-between">
+    <h3>Listagem de Despesas</h3>
+    <hr>
+    <div>
+        <button pButton label="Novo" [routerLink]="'cadastro'"></button>
+    </div>
 </div>
+
+<hr>
 
 <p-table
   [(selection)]="selectedItems"

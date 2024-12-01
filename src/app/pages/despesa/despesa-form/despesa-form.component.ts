@@ -37,7 +37,7 @@ export class DespesaFormComponent implements OnInit {
             if (data['despesa']) {
                 this.despesa = data['despesa'];
                 this.preencherForm(this.despesa);
-                this.formulario.patchValue({valorGasto: this.currencyPipe.transform(this.despesa.valorGasto, 'BRL', '')});
+                this.formulario.patchValue({valor: this.currencyPipe.transform(this.despesa.valor, 'BRL', '')});
             } else {
                 this.formulario = this.initForm();
             }
@@ -76,9 +76,9 @@ export class DespesaFormComponent implements OnInit {
         this.formulario = this._formBuilder.group({
             id: [despesa.id, Validators.required],
             descricao: [despesa.descricao, Validators.required],
-            valorGasto: [despesa.valorGasto, Validators.required],
+            valorGasto: [despesa.valor, Validators.required],
             credor: [despesa.credor?.id, Validators.required],
-            dataDespesa: [despesa.dataDespesa, Validators.required],
+            dataDespesa: [despesa.valor, Validators.required],
             categoria: [despesa.categoria?.id, Validators.required],
         });
     }

@@ -1,9 +1,14 @@
-<h3>{{ title }}</h3>
-<hr>
-<div>
-    <button type="button" class="btn btn-secondary me-2" [routerLink]="'/despesas'">Voltar</button>
-    <button type="button" class="btn btn-danger" (click)="excluir(formulario.get('id')?.value)">Excluir</button>
+<div style="display: flex; justify-content: space-between">
+    <h3>{{ title }}</h3>
+    <hr>
+    <div>
+<!--        <button pButton label="Salvar" type="submit" (click)="salvar()"></button>-->
+        <button pButton label="Excluir" class="p-button-danger" (click)="excluir(formulario.get('id')?.value)"></button>
+        <button pButton label="Voltar" [routerLink]="'/categorias'"></button>
+    </div>
 </div>
+
+<hr>
 
 <div class="row justify-content-center">
     <div class="col-6">
