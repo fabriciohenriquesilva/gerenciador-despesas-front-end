@@ -83,10 +83,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "browserTarget": "gerenciador-despesas-front-end:build:production"
+                          "buildTarget": "gerenciador-despesas-front-end:build:production"
                         },
                         "development": {
-                            "browserTarget": "gerenciador-despesas-front-end:build:development"
+                          "buildTarget": "gerenciador-despesas-front-end:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -94,7 +94,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "gerenciador-despesas-front-end:build"
+                      "buildTarget": "gerenciador-despesas-front-end:build"
                     }
                 },
                 "test": {
