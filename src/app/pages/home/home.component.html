@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="profile-pic"></div>
+    <p class="greetings">Olá, <span>Fabricio Henrique</span></p>
+</div>
+
+<div class="container-rotinas">
+    <div class="titulo">
+        <h1>Rotinas</h1>
+    </div>
+
+    <p-divider></p-divider>
+
+    <div class="rotinas">
+
+        @for (item of (menu | async); track $index) {
+            <card [titulo]="item.nome"
+                  [descricao]="item.descricao"
+                  routerLink="{{ item.rota }}"
+                  [state]="{data: item}"
+                  icone="{{ item.icone }}">
+            </card>
+        }
+
+    </div>
+
+</div>

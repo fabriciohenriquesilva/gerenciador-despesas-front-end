@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "nome": "Finanças",
+        "descricao": "Lançamento de Receitas e Despesas",
+        "icone": "pi pi-receipt",
+        "rota": "/movimentofinanceiro"
+    },
+    {
+        "id": 2,
+        "nome": "Categoria",
+        "descricao": "Cadastro de tipo de Movimentação Financeira",
+        "icone": "pi pi-tag",
+        "rota": "/categorias"
+    }
+]
+

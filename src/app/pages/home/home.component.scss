@@ -1,0 +1,44 @@
+@import "colors";
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 80%;
+    margin: 48px auto;
+}
+
+.container-rotinas {
+    width: 80%;
+    margin: 16px auto 0;
+
+    h1 {
+        margin-bottom: 16px;
+    }
+}
+
+.profile-pic {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: $grey-300;
+}
+
+span {
+    font-weight: bold;
+}
+
+.rotinas {
+    display: flex;
+    gap: 32px;
+    margin-top: 16px;
+}
+
+.card {
+    width: 250px;
+    height: 250px;
+
+    &:hover {
+      margin: 1px solid $blue-400;
+    }
+}
