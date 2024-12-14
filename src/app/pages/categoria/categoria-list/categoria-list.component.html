@@ -1,49 +1,47 @@
-<div style="display: flex; justify-content: space-between">
-    <h3>Listagem de Categorias</h3>
-    <hr>
-    <div>
-        <button pButton label="Novo" [routerLink]="'cadastro'"></button>
+<div class="navbar-group">
+    <h2>Listagem de Categorias</h2>
+
+    <div class="button-group">
+        <p-button label="Voltar" icon="pi pi-chevron-circle-left" [outlined]="true" [routerLink]="'../'"></p-button>
+        <p-button label="Cadastrar" icon="pi pi-file-plus" [routerLink]="'cadastro'"></p-button>
     </div>
 </div>
 
-<hr>
+<p-divider />
 
 <p-table
-    [(selection)]="selectedItems"
-    styleClass="p-datatable-striped p-datatable-sm"
+    styleClass="p-datatable-striped"
     *ngIf="categorias"
     [value]="categorias">
 
     <ng-template pTemplate="header">
         <tr class="table-header">
-            <th style="width: 4rem">
-                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-            </th>
             <th pSortableColumn="id">ID
                 <p-sortIcon field="id"></p-sortIcon>
             </th>
             <th pSortableColumn="nome">Nome
                 <p-sortIcon field="nome"></p-sortIcon>
             </th>
-            <th>Ações</th>
+            <th class="button-group">Visualizar</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-categoria>
         <tr>
-            <td>
-                <p-tableCheckbox [value]="categoria"></p-tableCheckbox>
-            </td>
             <td>{{ categoria.id }}</td>
             <td>{{ categoria.nome }}</td>
-            <td>
-                <button type="button" class="btn btn-sm btn-primary me-2" [routerLink]="['cadastro', categoria.id]">
-                    Editar
-                </button>
-                <button type="button" class="btn btn-sm btn-danger" (click)="excluir(categoria.id)">Excluir</button>
+            <td class="button-group">
+                <p-button icon="pi pi-pencil" [rounded]="true" [outlined]="true" size="small" [routerLink]="['cadastro', categoria.id]"/>
+<!--                <p-button icon="pi pi-trash" [rounded]="true" severity="danger" [outlined]="true" size="small" (click)="excluir(categoria.id)"/>-->
             </td>
         </tr>
 
     </ng-template>
 </p-table>
 
-<app-pagination [page]="page" (eventEmitter)="trocarPagina($event)" *ngIf="page"></app-pagination>
+<p-paginator *ngIf="page"
+             (onPageChange)="onPageChange($event)"
+             [first]="0 || page.pageable.offset"
+             [rows]="page.pageable.pageSize"
+             [totalRecords]="page.totalElements"
+             [rowsPerPageOptions]="[10, 20, 30]">
+</p-paginator>

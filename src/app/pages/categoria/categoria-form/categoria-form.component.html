@@ -1,33 +1,47 @@
-<div style="display: flex; justify-content: space-between">
-    <h3>{{ title }}</h3>
-    <hr>
-    <div>
-        <button pButton label="Salvar" type="submit" (click)="salvar()"></button>
-        <button pButton label="Excluir" class="p-button-danger" (click)="excluir(formulario.get('id')?.value)"></button>
-        <button pButton label="Voltar" [routerLink]="'/categorias'"></button>
+<div class="navbar-group">
+    <h2>Cadastro de Categorias</h2>
+
+    <div class="button-group">
+        <p-button label="Voltar" icon="pi pi-chevron-circle-left" [outlined]="true" [routerLink]="'/categorias'"></p-button>
+        <p-button label="Excluir" icon="pi pi-trash" [severity]="'danger'" [outlined]="true" (onClick)="onDeleteClick($event)"></p-button>
+        <p-button label="Salvar" icon="pi pi-save" (onClick)="salvar()"></p-button>
     </div>
 </div>
 
-<hr>
+<p-divider/>
 
 <div class="row justify-content-center">
-    <form [formGroup]="formulario" class="card-body" *ngIf="formulario">
-
-        <text-input  formControlName="nome" [label]="'Nome da Categoria'"
-                    [field]="'nome'"></text-input>
+    <form [formGroup]="formulario" *ngIf="formulario">
 
         <div class="input-group">
-            <div class="input-label">
-                <label
-                    [for]="'pai'"
-                    [textContent]="'Categoria Pai'">
-                </label>
-            </div>
-            <div class="p-fluid p-formgrid grid">
-                <p-autoComplete [inputStyle]="{'width':'380px'}" formControlName="pai" (completeMethod)="search($event)" [suggestions]="categorias" field="nome" [dropdown]="true"></p-autoComplete>
-            </div>
+            <label [for]="'id'" [textContent]="'Código'"></label>
+            <p-inputNumber inputId="id" formControlName="id" [readonly]="true" [style]="{width: '80px !important'}"/>
+        </div>
+
+        <div class="input-group">
+            <label [for]="'nome'" [textContent]="'Nome'"></label>
+            <input id="nome" type="text" pInputText formControlName="nome"/>
+        </div>
+
+        <div class="input-group">
+            <label for="nome" [textContent]="'Categoria Pai'"></label>
+            <p-autoComplete
+                formControlName="pai"
+                [dropdown]="true"
+                [suggestions]="filteredCategorias"
+                (completeMethod)="search($event)"
+                optionLabel="nome">
+            </p-autoComplete>
         </div>
 
     </form>
 
 </div>
+
+<p-toast></p-toast>
+<p-confirmDialog>
+    <ng-template pTemplate="footer">
+        <p-button (onClick)="cancelar($event)" label="Cancelar" [severity]="'secondary'" [outlined]="true" />
+        <p-button (onClick)="confirmar($event)" label="Sim, excluir" [severity]="'danger'" [outlined]="true" />
+    </ng-template>
+</p-confirmDialog>
