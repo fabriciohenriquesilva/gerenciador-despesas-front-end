@@ -1,0 +1,44 @@
+@import "colors";
+
+.icon {
+    font-size: 2rem;
+    //color: $blue-600;
+    color: $grey-700;
+}
+
+.card {
+    width: 210px;
+    height: 210px;
+    cursor: pointer;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    background-color: $card-color;
+    margin-top: 8px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    &:hover {
+        //border-color: $blue-600;
+        border-color: $grey-700;
+
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        transform: translateY(-4px);
+    }
+
+}
+
+.card-title {
+    //color: $blue-600;
+    color: $grey-700;
+    text-align: center;
+}
+
+.card-description {
+    color: $grey-300;
+    text-align: center;
+    margin: 0 4px;
+}
