@@ -1,0 +1,30 @@
+<div class="navbar-group">
+    <h2>{{ title }}</h2>
+
+    <div class="button-group">
+        <p-button label="Voltar" icon="pi pi-chevron-circle-left" [outlined]="true" (onClick)="return()"></p-button>
+        <p-button label="Cadastrar" icon="pi pi-file-plus" [routerLink]="'cadastro'"></p-button>
+    </div>
+</div>
+
+<p-divider />
+
+<!-- MODO DE LISTAGEM DE REGISTROS -->
+<div *ngIf="isListMode">
+    <ng-content select="#list"></ng-content>
+</div>
+
+<!-- MODO DE FORMULÁRIO DE REGISTROS -->
+<div *ngIf="isCreateMode || isEditMode">
+    <ng-content select="#form"></ng-content>
+</div>
+
+<!-- MESSAGES -->
+<p-toast></p-toast>
+<p-confirmDialog>
+    <ng-template pTemplate="footer">
+        <p-button (onClick)="cancelar($event)" label="Cancelar" [severity]="'secondary'" [outlined]="true" />
+        <p-button (onClick)="confirmar($event)" label="Sim, excluir" [severity]="'danger'" [outlined]="true" />
+    </ng-template>
+</p-confirmDialog>
+
