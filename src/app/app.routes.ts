@@ -18,10 +18,13 @@ export const routes: Routes = [
         loadChildren: () => import("./pages/categoria/categoria-routing.module")
             .then(m => m.CategoriaRoutingModule),
         canActivate: [AuthGuard]
-    }
+    },
     // {
     //     path: 'cadastros',
     //     loadChildren: () => import("./pages/cadastros/cadastros-routing.module")
     //         .then(m => m.CadastrosRoutingModule)
     // }
+    {
+        path: '**', redirectTo: 'auth/login'
+    }
 ];

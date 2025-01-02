@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
-import {MenuModule} from "primeng/menu";
 import {CommonModule} from "@angular/common";
-import {RouterModule} from "@angular/router";
+import {Router, RouterModule} from "@angular/router";
 
 @Component({
     selector: 'app-root',
@@ -12,4 +11,13 @@ import {RouterModule} from "@angular/router";
 })
 export class AppComponent {
     title = 'Controle Financeiro';
+
+    isLoginPage: boolean = false;
+
+    constructor(private router: Router) {
+        this.router.events.subscribe(() => {
+            this.isLoginPage = this.router.url === '/auth/login';
+        });
+    }
+
 }

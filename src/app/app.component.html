@@ -1,5 +1,13 @@
-<nav></nav>
+@if(isLoginPage) {
+    <div class="login-container">
+        <router-outlet></router-outlet>
+    </div>
+} @else {
+    <div class="app-container">
+        <nav></nav>
 
-<main>
-    <router-outlet></router-outlet>
-</main>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+}
