@@ -1,0 +1,64 @@
+login {
+
+    .form-login-field {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        justify-content: center;
+        width: 300px;
+        gap: 4px;
+        margin-top: 16px;
+
+        & input {
+            width: 100% !important;
+        }
+
+        & p-button {
+            width: 100% !important;
+        }
+
+    }
+
+    .form-login-button p-button {
+        width: 100%;
+    }
+
+    .form-login-field label {
+
+    }
+
+    .input-label {
+        //width: 160px;
+
+        label {
+            display: block;
+            text-align: right;
+        }
+    }
+
+    .input-field {
+        margin: 6px 0;
+    }
+
+    label {
+        margin-right: 12px;
+    }
+
+    .container {
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        //width: 100%;
+        margin: 0 auto;
+        height: 300px;
+    }
+
+    .form-login {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+    }
+
+}
