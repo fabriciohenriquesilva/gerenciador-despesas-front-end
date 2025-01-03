@@ -15,6 +15,7 @@ export class AuthGuard implements CanActivate {
         const authToken = sessionStorage.getItem('auth-token');
 
         if (authToken) {
+            // TODO Verificar se o token não está vencido
             return true;
         } else {
             this.router.navigate(['/auth/login']).then();
