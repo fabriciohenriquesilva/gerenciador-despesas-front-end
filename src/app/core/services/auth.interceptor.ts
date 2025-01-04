@@ -6,7 +6,6 @@ export function authInterceptor(
     next: HttpHandlerFn): Observable<HttpEvent<any>> {
 
     const idToken = sessionStorage.getItem("auth-token");
-    console.log(idToken)
 
     if (idToken) {
         const cloned = req.clone({
