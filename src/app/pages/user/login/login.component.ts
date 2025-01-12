@@ -8,6 +8,7 @@ import {Button} from "primeng/button";
 import {UserService} from "../user.service";
 import {NotificationService} from "../../../core/services/notification.service";
 import {ToastModule} from "primeng/toast";
+import {UserTokenDto} from "../dto/user.token.dto";
 
 @Component({
     selector: 'login',
@@ -42,12 +43,9 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        console.log(this.formulario.value);
-
         return this.userService.login(this.formulario.value)
             .subscribe({
-                next: (data) => {
-                    console.log(data);
+                next: (data: UserTokenDto) => {
                     const timeout = 2500;
                     this.notificationService.showSuccess("Login efetuado com sucesso!", timeout);
                     setTimeout(() => {
