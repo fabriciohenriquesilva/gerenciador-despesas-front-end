@@ -1,0 +1,128 @@
+<crud-view
+    [listTitle]="'Listagem de Movimentação Financeira'"
+    [editTitle]="'Cadastro de Movimentação Financeira'">
+
+    <div id="list">
+        <p-table
+            styleClass="p-datatable-striped"
+            *ngIf="movimentacoes"
+            [value]="movimentacoes">
+
+            <ng-template pTemplate="header">
+                <tr class="table-header">
+                    <th pSortableColumn="id">
+                        Código
+                        <p-sortIcon field="id"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="descricao">
+                        Histórico
+                        <p-sortIcon field="descricao"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="categoria">
+                        Categoria
+                        <p-sortIcon field="categoria"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="tipoMovimentoFinanceiro">
+                        Tipo Movimentação
+                        <p-sortIcon field="tipoMovimentoFinanceiro"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="valor">
+                        Valor
+                        <p-sortIcon field="valor"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="quantidadeParcelas">
+                        # Parcelas
+                        <p-sortIcon field="quantidadeParcelas"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="data">
+                        Data
+                        <p-sortIcon field="data"></p-sortIcon>
+                    </th>
+
+                    <th class="button-group">Visualizar</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-movimento>
+                <tr>
+                    <td>{{ movimento.id }}</td>
+                    <td>{{ movimento.descricao }}</td>
+                    <td>{{ movimento.categoria.nome }}</td>
+                    <td>{{ movimento.tipoMovimentoFinanceiro | titlecase }}</td>
+                    <td>{{ movimento.valor | currency:'BRL' }}</td>
+                    <td>{{ movimento.quantidadeParcelas }}</td>
+                    <td>{{ movimento.data | date:'dd/MM/YYYY' }}</td>
+                    <td class="button-group">
+                        <p-button icon="pi pi-pencil" [rounded]="true" [outlined]="true" size="small" [routerLink]="['./cadastro', movimento.id]"/>
+                    </td>
+                </tr>
+
+            </ng-template>
+        </p-table>
+
+        <p-paginator *ngIf="page"
+                     (onPageChange)="onPageChange($event)"
+                     [first]="0 || page.pageable.offset"
+                     [rows]="page.pageable.pageSize"
+                     [totalRecords]="page.totalElements"
+                     [rowsPerPageOptions]="[10, 20, 30]">
+        </p-paginator>
+
+    </div>
+
+    <div id="form" *ngIf="!isListMode">
+        <form [formGroup]="formulario" *ngIf="formulario">
+
+            <div class="form-input-field">
+                <label [for]="'id'">Código</label>
+                <p-inputNumber inputId="id" formControlName="id" [readonly]="true" [style]="{width: '80px !important'}"/>
+            </div>
+
+            <div class="form-input-field">
+                <label [for]="'descricao'">Descrição</label>
+                <input id="descricao" type="text" pInputText formControlName="descricao"/>
+            </div>
+
+            <div class="form-input-field">
+                <label [for]="'valor'">Valor</label>
+                <p-inputNumber inputId="valor" formControlName="valor" mode="currency" currency="BRL"/>
+            </div>
+
+            <div class="form-input-field">
+                <label [for]="'tipoMovimentoFinanceiro'">Tipo Movimento</label>
+                <p-dropdown id="tipoMovimentoFinanceiro"
+                            [options]="tipoMovimentoFinanceiroList | keyvalue"
+                            optionValue="key"
+                            optionLabel="value"
+                            formControlName="tipoMovimentoFinanceiro">
+                </p-dropdown>
+            </div>
+
+            <div class="form-input-field">
+                <label [for]="'data'">Data</label>
+                <p-calendar formControlName="data" [dateFormat]="'dd/mm/yy'" dataType="date" [showIcon]="true" [showClear]="true" />
+            </div>
+
+            @if (isCreateMode) {
+                <div class="form-input-field">
+                    <label [for]="'quantidadeParcelas'">Quantidade Parcelas</label>
+                    <p-inputNumber inputId="quantidadeParcelas" formControlName="quantidadeParcelas" [showButtons]="true" [min]="1"/>
+                </div>
+            }
+
+            <div class="form-input-field">
+                <label>Categoria</label>
+                <p-autoComplete
+                    formControlName="categoria"
+                    [dropdown]="true"
+                    [suggestions]="filteredCategorias"
+                    (completeMethod)="filterCategorias($event)"
+                    optionLabel="nome">
+                </p-autoComplete>
+            </div>
+
+        </form>
+
+    </div>
+
+
+</crud-view>

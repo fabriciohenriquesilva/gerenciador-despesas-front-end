@@ -19,12 +19,13 @@ export const routes: Routes = [
             .then(m => m.CategoriaRoutingModule),
         canActivate: [AuthGuard]
     },
-    // {
-    //     path: 'cadastros',
-    //     loadChildren: () => import("./pages/cadastros/cadastros-routing.module")
-    //         .then(m => m.CadastrosRoutingModule)
-    // }
+    {
+        path: 'movimentofinanceiro',
+        loadChildren: () => import("./pages/movimento-financeiro/movimento-financeiro-routing.module")
+            .then(m => m.MovimentoFinanceiroRoutingModule),
+        canActivate: [AuthGuard]
+    },
     {
         path: '**', redirectTo: 'auth/login'
-    }
+    },
 ];
