@@ -2,20 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Poppins:wght@400;600&family=Roboto:wght@400;700&display=swap');
 @import "primeicons/primeicons.css";
 @import "colors";
-//
-* {
-    //margin: 0;
-    //padding: 0;
-    //box-sizing: border-box;
-    //    background-color: $background-color;
-    //    font-size: 16px;
-    //    font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
-}
 
-//:root {
-//    --gd-primary-color: #1296D2;
-//    --gd-dark-primary-color: #0d47a1;
-//}
+// GENERAL
 
 body {
     margin: 0;
@@ -26,7 +14,7 @@ body {
     height: 100vh;
 }
 
-label {
+label, p {
     color: $grey-700;
 }
 
@@ -48,66 +36,21 @@ h3 {
     margin: 1rem 0;
 }
 
-/* Chrome, Safari, Edge, Opera */
-//input::-webkit-outer-spin-button,
-//input::-webkit-inner-spin-button {
-//    -webkit-appearance: none;
-//    margin: 0;
-//}
-
-/* Firefox */
-//input[type=number] {
-//    -moz-appearance: textfield;
-//}
-//
-//.mensagem__erro {
-//    font-size: 0.875rem;
-//    margin-top: 0.5rem;
-//    color: red;
-//}
-
-/*.table-header {*/
-/*    background-color: var(--gd-primary-color);*/
-/*    color: white;*/
-/*}*/
-//
-//.btn__edit {
-//    cursor: pointer;
-//    border: none;
-//    background: none;
-//    color: var(--gd-primary-color);
-//}
-
-/*.listras tr:nth-child(even) {*/
-/*    background-color: #f2f2f2;*/
-/*    border: #f8f8f8;*/
-/*}*/
-
-/*.listras tr:nth-child(odd) {*/
-/*    border: #f8f8f8;*/
-/*}*/
-
-/*.hover tbody tr:hover td, .hover tbody tr:hover th {*/
-/*    background-color: #dfdfdf;*/
-/*}*/
-
-// override default classes
-
-//.p-inputtext {
-//    padding: 6px !important;
-//    font-size: 16px !important;
-//}
-//
-//div > .p-button {
-//    padding: 6px 12px !important;
-//    margin: 0 4px !important;
-//}
+// NAVBAR
 
 .navbar-group {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
+.navbar-button-group {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+// BUTTONS
 
 .p-button.p-button-icon-only {
     width: 2rem !important;
@@ -117,18 +60,24 @@ h3 {
     height: 2rem !important;
 }
 
-.button-group {
+// FORMS
+
+.form-input-field {
     display: flex;
-    gap: 8px;
-    justify-content: flex-end;
-}
-
-.input-group > label {
-    display: block;
-    width: 160px;
-    text-align: right;
-}
-
-.input-group {
+    align-items: baseline;
     margin-bottom: 12px;
+
+    & > label {
+        width: 160px;
+        text-align: right;
+        margin-right: 12px;
+    }
+}
+
+.p-dropdown .p-dropdown-label {
+    width: 190px !important;
+}
+
+.p-calendar {
+    width: 265px !important;
 }
