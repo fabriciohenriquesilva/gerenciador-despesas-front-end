@@ -6,7 +6,7 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {PrimeTemplate} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {NotificationService} from "../../core/services/notification.service";
-import {BaseCrud} from "../base-component/base-crud";
+import {BaseCrud} from "../base-crud/base-crud";
 import {CommonModule} from "@angular/common";
 import {BaseEntity} from "../../core/models/base-entity";
 
@@ -28,7 +28,10 @@ import {BaseEntity} from "../../core/models/base-entity";
 export class CrudViewComponent<T extends BaseEntity> implements OnInit {
 
     @Input()
-    title!: string;
+    listTitle!: string;
+
+    @Input()
+    editTitle!: string;
 
     routes: string[] = [];
 
@@ -48,10 +51,10 @@ export class CrudViewComponent<T extends BaseEntity> implements OnInit {
         this.routes = path?.split('/') as string[];
 
         if (this.routes.length > 0) {
-            if (this.routes.some(route => route === "cadastro")) {
-                this.isCreateMode = true;
-            } else if (this.routes.some(route => route === ":id")) {
+            if (this.routes.some(route => route === ":id")) {
                 this.isEditMode = true;
+            } else if (this.routes.some(route => route === "cadastro")) {
+                this.isCreateMode = true;
             } else {
                 this.isListMode = true;
             }
@@ -62,25 +65,30 @@ export class CrudViewComponent<T extends BaseEntity> implements OnInit {
         this.baseCrud = parent;
     }
 
-    return() {
+    return(): void {
         if (this.routes.some(route => route === ':id')) {
             this.router.navigate(['../../'], {relativeTo: this.route}).then();
-        } else {
+        } else if (this.routes.some(route => route === 'cadastro')) {
             this.router.navigate(['../'], {relativeTo: this.route}).then();
+        } else {
+            this.router.navigate(['/home'], {relativeTo: this.route}).then();
         }
     }
 
-    cancelar($event: MouseEvent) {
+    cancelDelete(event: MouseEvent): void {
         this.notificationService.closeDialog();
     }
 
-    confirmar($event: MouseEvent): void {
-        this.baseCrud.excluir();
+    confirmDelete(event: MouseEvent): void {
+        this.baseCrud.delete();
     }
 
     onDeleteClick(event: Event): void {
         this.notificationService.showConfirm(event);
     }
 
+    onSaveClick(event: Event): void {
+        this.baseCrud.save();
+    }
 
 }

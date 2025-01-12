@@ -1,5 +1,5 @@
 import {CrudViewComponent} from "../crud-view/crud-view.component";
-import {Component, inject, OnInit, ViewChild} from "@angular/core";
+import {AfterContentInit, Component, inject, OnInit, ViewChild} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {RestService} from "../../core/services/rest.service";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
@@ -15,7 +15,7 @@ import {BaseEntity} from "../../core/models/base-entity";
     imports: [ButtonModule, RouterLink, TitleCasePipe],
     template: '<>',
 })
-export abstract class BaseCrud<T extends BaseEntity> implements OnInit {
+export abstract class BaseCrud<T extends BaseEntity> implements OnInit, AfterContentInit {
 
     @ViewChild(CrudViewComponent, {static: true})
     crudViewComponent!: CrudViewComponent<T>;
@@ -23,6 +23,10 @@ export abstract class BaseCrud<T extends BaseEntity> implements OnInit {
     formulario!: FormGroup;
     tableData!: T[];
     page!: Page<T>;
+
+    isEditMode: boolean = false;
+    isListMode: boolean = false;
+    isCreateMode: boolean = false;
 
     abstract getService(): RestService<T>;
 
@@ -36,46 +40,22 @@ export abstract class BaseCrud<T extends BaseEntity> implements OnInit {
 
     ngAfterContentInit(): void {
         this.crudViewComponent.setBaseCrud(this);
+
+        setTimeout(() => {
+            this.isEditMode = this.crudViewComponent.isEditMode;
+            this.isListMode = this.crudViewComponent.isListMode;
+            this.isCreateMode = this.crudViewComponent.isCreateMode;
+        }, 50);
     }
 
-    return() {
-        if (this.crudViewComponent.routes.some(route => route === ':id')) {
-            this.router.navigate(['../../'], {relativeTo: this.activatedRoute});
-        } else {
-            this.router.navigate(['../'], {relativeTo: this.activatedRoute});
-        }
-    }
-
-    create() {
-        this.router.navigate(['./create'], {relativeTo: this.activatedRoute})
-    }
-
-    getById(entity: T) {
-        const id = entity.id!;
-        this.getService().getById(id)
-            .subscribe(data => console.log(data));
-    }
-
-    // search() {
-        // this.getService().list()
-        //     .subscribe(data => {
-        //         this.tableData = data;
-        //     })
-    // }
-
-    salvar() {
-        return this.getService().save(this.formulario.value)
+    save() {
+        return this.getService().save(this.formulario.getRawValue())
             .subscribe({
                 next: (data: any) => {
+                    console.log(data)
                     const timeout = 2500;
-                    this.notificationService.showSuccess('Registro excluído com sucesso', timeout);
-
-                    // TODO futuramente abstrair lógica para outro componente de encapsulamento
-                    this.crudViewComponent.return();
-                    // this.router.navigate(['categorias']).then();
-                    // setTimeout(() => {
-                    //     this.router.navigate(['categorias']).then();
-                    // }, timeout);
+                    this.notificationService.showSuccess('Registro salvo com sucesso', timeout);
+                    // this.crudViewComponent.return();
                 },
                 error: (err: any) => {
                     this.notificationService.showError(`Erro ao salvar registro: ${err}`);
@@ -84,16 +64,15 @@ export abstract class BaseCrud<T extends BaseEntity> implements OnInit {
             });
     }
 
-    excluir() {
-        return this.getService().remove(this.formulario.value.id)
+    delete() {
+        const id: number = this.formulario.getRawValue().id;
+
+        return this.getService().remove(id)
             .subscribe({
                 next: (data: any) => {
                     const timeout = 2500;
                     this.notificationService.showSuccess('Registro excluído com sucesso', timeout);
                     this.crudViewComponent.return();
-                    // setTimeout(() => {
-                    //     this.router.navigate(['categorias']).then();
-                    // }, timeout);
                 },
                 error: (err: any) => {
                     this.notificationService.showError(`Erro ao realizar exclusão: ${err}`);
@@ -102,40 +81,29 @@ export abstract class BaseCrud<T extends BaseEntity> implements OnInit {
             });
     }
 
-    // search(event: any): void {
-    //     this.filteredCategorias = this.categorias.filter(c => c.nome.toLowerCase().includes(event.query.toLowerCase()));
-    // }
-
-    // excluir() {
-    //     return this.getService().remove(this.formulario.value.id).subscribe(() => this.loadData());
-    // }
-
     onPageChange(event: any): void {
         this.getService().getPage(event.page)
             .subscribe(page => {
-                this.atualizarDadosNaPagina(page);
+                this.refreshPageData(page);
             });
     }
 
-    private atualizarDadosNaPagina(page: Page<T>): void {
+    private refreshPageData(page: Page<T>): void {
         this.page = page;
         this.tableData = page.content;
     }
 
+    // TODO implement on future
     report() {
-
+        throw new Error('Not implemented yet');
     }
 
-    clearForm() {
+    clearForm(): void {
         this.formulario.reset();
     }
 
-    initForm(): void {
+    abstract initForm(): void;
 
-    }
-
-    updateForm(entity: T): void {
-
-    }
+    abstract updateForm(entity: T): void
 
 }
