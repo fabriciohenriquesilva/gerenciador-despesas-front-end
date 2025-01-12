@@ -21,6 +21,9 @@ export class AuthGuard implements CanActivate {
             if (this.jwtService.isTokenExpired(authToken)) {
                 sessionStorage.removeItem('auth-token');
                 this.router.navigate(['/auth/login']).then();
+
+                // TODO [] Chamar o ToastService para avisar que o acesso expirou
+
                 return false;
             }
 
