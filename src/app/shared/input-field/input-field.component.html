@@ -1,27 +1,20 @@
 <div class="input-group">
-
-  <div class="input-control">
-
-    <label
-      [for]="id"
-      class="form-label"
-      [textContent]="getLabel()">
-    </label>
-    <input
-      class="form-control"
-      [type]="type"
-      [placeholder]="placeholder"
-      [id]="id"
-      [readOnly]="!!isReadOnly"
-      (blur)="onTouchedCb(null)"
-      [(ngModel)]="value"
-      [ngClass]="hasError()"
-    />
-
-  </div>
-
-  <div class="input-error" *ngIf="control?.errors?.['required'] && control?.touched">
-    O campo {{ label }} é obrigatório!
-  </div>
-
+    <div class="input-label">
+        <label
+            [for]="field"
+            [textContent]="label">
+        </label>
+    </div>
+    <div class="input-field">
+        <input
+            #inputElement
+            [id]="field"
+            type="text"
+            pInputText
+            [disabled]="!!isDisabled"
+            [placeholder]="placeholder"
+            [(ngModel)]="value"
+            [style.width.px]="width ? width : null"
+        />
+    </div>
 </div>

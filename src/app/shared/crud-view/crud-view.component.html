@@ -1,0 +1,43 @@
+<div class="navbar-group">
+    @if (isListMode) {
+        <h2>{{ listTitle }}</h2>
+    } @else {
+        <h2>{{ editTitle }}</h2>
+    }
+
+    <div class="navbar-button-group">
+
+        <p-button label="Voltar" icon="pi pi-chevron-circle-left" [outlined]="true" (onClick)="return()"></p-button>
+
+        @if(isListMode) {
+            <p-button label="Cadastrar" icon="pi pi-file-plus" [routerLink]="'cadastro'"></p-button>
+        } @else if(isEditMode) {
+            <p-button label="Excluir" icon="pi pi-trash" [severity]="'danger'" [outlined]="true" (onClick)="onDeleteClick($event)"></p-button>
+            <p-button label="Salvar" icon="pi pi-save" (onClick)="onSaveClick($event)"></p-button>
+        } @else if (isCreateMode) {
+            <p-button label="Salvar" icon="pi pi-save" (onClick)="onSaveClick($event)"></p-button>
+        }
+
+    </div>
+</div>
+
+<p-divider/>
+
+<!-- RENDERIZAÇÃO DO CONTEÚDO (CRUD) -->
+<!-- 1 - List -->
+<!-- 2 - Edit -->
+@if(isListMode) {
+    <ng-content select="#list"></ng-content>
+} @else if (isCreateMode || isEditMode) {
+    <ng-content select="#form"></ng-content>
+}
+
+<!-- MESSAGES -->
+<p-toast></p-toast>
+<p-confirmDialog>
+    <ng-template pTemplate="footer">
+        <p-button (onClick)="cancelDelete($event)" label="Cancelar" [severity]="'secondary'" [outlined]="true"/>
+        <p-button (onClick)="confirmDelete($event)" label="Sim, excluir" [severity]="'danger'" [outlined]="true"/>
+    </ng-template>
+</p-confirmDialog>
+

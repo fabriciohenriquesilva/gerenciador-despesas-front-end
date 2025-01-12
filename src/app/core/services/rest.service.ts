@@ -28,7 +28,7 @@ export class RestService<T extends { id?: string | number }> {
             .pipe(take(1));
     }
 
-    loadById(id: number | string): Observable<T> {
+    getById(id: number | string): Observable<T> {
         const url = `${this._endpoint}/${id}`;
         return this._http.get<T>(url)
             .pipe(take(1));

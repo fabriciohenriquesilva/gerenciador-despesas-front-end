@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Poppins:wght@400;600&family=Roboto:wght@400;700&display=swap');
+@import "primeicons/primeicons.css";
+@import "colors";
+
+// GENERAL
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+}
+
+label, p {
+    color: $grey-700;
+}
+
+h1 {
+    font-size: 2rem;
+    color: $grey-700;
+    margin: 1rem 0;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: $grey-700;
+    margin: 0.875rem 0;
+}
+
+h3 {
+    font-size: 1.25rem;
+    color: $grey-700;
+    margin: 1rem 0;
+}
+
+// NAVBAR
+
+.navbar-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-button-group {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+// BUTTONS
+
+.p-button.p-button-icon-only {
+    width: 2rem !important;
+}
+
+.p-button.p-button-icon-only.p-button-rounded {
+    height: 2rem !important;
+}
+
+// FORMS
+
+.form-input-field {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 12px;
+
+    & > label {
+        width: 160px;
+        text-align: right;
+        margin-right: 12px;
+    }
+}
+
+.p-dropdown .p-dropdown-label {
+    width: 190px !important;
+}
+
+.p-calendar {
+    width: 265px !important;
+}

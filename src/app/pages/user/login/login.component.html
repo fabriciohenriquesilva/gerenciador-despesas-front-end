@@ -1,0 +1,21 @@
+<div class="form-container">
+    <form [formGroup]="formulario" class="form-login">
+
+        <div class="form-login-field">
+            <label [for]="'username'" [textContent]="'Email'"></label>
+            <input id="username" pInputText formControlName="username"/>
+        </div>
+
+        <div class="form-login-field">
+            <label [for]="'password'">Senha</label>
+            <input id="password" type="password" pInputText formControlName="password"/>
+        </div>
+
+        <div class="form-login-field">
+            <p-button label="Login" icon="pi pi-sign-in" (onClick)="login()"></p-button>
+        </div>
+
+    </form>
+</div>
+
+<p-toast></p-toast>

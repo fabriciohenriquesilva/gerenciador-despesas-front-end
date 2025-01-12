@@ -1,0 +1,47 @@
+<div class="navbar-group">
+    <h2>Cadastro de Categorias</h2>
+
+    <div class="button-group">
+        <p-button label="Voltar" icon="pi pi-chevron-circle-left" [outlined]="true" [routerLink]="'/categorias'"></p-button>
+        <p-button label="Excluir" icon="pi pi-trash" [severity]="'danger'" [outlined]="true" (onClick)="onDeleteClick($event)"></p-button>
+        <p-button label="Salvar" icon="pi pi-save" (onClick)="salvar()"></p-button>
+    </div>
+</div>
+
+<p-divider/>
+
+<div class="row justify-content-center">
+    <form [formGroup]="formulario" *ngIf="formulario">
+
+        <div class="input-group">
+            <label [for]="'id'" [textContent]="'Código'"></label>
+            <p-inputNumber inputId="id" formControlName="id" [readonly]="true" [style]="{width: '80px !important'}"/>
+        </div>
+
+        <div class="input-group">
+            <label [for]="'nome'" [textContent]="'Nome'"></label>
+            <input id="nome" type="text" pInputText formControlName="nome"/>
+        </div>
+
+        <div class="input-group">
+            <label for="nome" [textContent]="'Categoria Pai'"></label>
+            <p-autoComplete
+                formControlName="pai"
+                [dropdown]="true"
+                [suggestions]="filteredCategorias"
+                (completeMethod)="search($event)"
+                optionLabel="nome">
+            </p-autoComplete>
+        </div>
+
+    </form>
+
+</div>
+
+<p-toast></p-toast>
+<p-confirmDialog>
+    <ng-template pTemplate="footer">
+        <p-button (onClick)="cancelar($event)" label="Cancelar" [severity]="'secondary'" [outlined]="true" />
+        <p-button (onClick)="confirmar($event)" label="Sim, excluir" [severity]="'danger'" [outlined]="true" />
+    </ng-template>
+</p-confirmDialog>

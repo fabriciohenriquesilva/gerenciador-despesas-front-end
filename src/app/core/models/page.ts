@@ -8,4 +8,11 @@ export interface Page<T> {
     numberOfElements: number;
     first: boolean;
     empty: boolean;
+    pageable: Pageable;
+}
+
+interface Pageable {
+    offset: number;
+    pageNumber: number;
+    pageSize: number;
 }

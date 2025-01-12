@@ -1,0 +1,54 @@
+<div class="navbar-group">
+    <h2>Listagem de Categorias</h2>
+
+    <div class="button-group">
+        <p-button label="Voltar" icon="pi pi-chevron-circle-left" [outlined]="true" [routerLink]="'/home'"></p-button>
+        <p-button label="Cadastrar" icon="pi pi-file-plus" [routerLink]="'cadastro'"></p-button>
+    </div>
+</div>
+
+<p-divider />
+
+<p-table
+    styleClass="p-datatable-striped"
+    *ngIf="categorias"
+    [value]="categorias">
+
+    <ng-template pTemplate="header">
+        <tr class="table-header">
+            <th pSortableColumn="id">
+                Código
+                <p-sortIcon field="id"></p-sortIcon>
+            </th>
+            <th pSortableColumn="nome">
+                Nome
+                <p-sortIcon field="nome"></p-sortIcon>
+            </th>
+            <th pSortableColumn="pai">
+                Categoria Pai
+                <p-sortIcon field="pai"></p-sortIcon>
+            </th>
+            <th class="button-group">Visualizar</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-categoria>
+        <tr>
+            <td>{{ categoria.id }}</td>
+            <td>{{ categoria.nome }}</td>
+            <td>{{ categoria?.pai?.nome }}</td>
+            <td class="button-group">
+                <p-button icon="pi pi-pencil" [rounded]="true" [outlined]="true" size="small" [routerLink]="['cadastro', categoria.id]"/>
+<!--                <p-button icon="pi pi-trash" [rounded]="true" severity="danger" [outlined]="true" size="small" (click)="excluir(categoria.id)"/>-->
+            </td>
+        </tr>
+
+    </ng-template>
+</p-table>
+
+<p-paginator *ngIf="page"
+             (onPageChange)="onPageChange($event)"
+             [first]="0 || page.pageable.offset"
+             [rows]="page.pageable.pageSize"
+             [totalRecords]="page.totalElements"
+             [rowsPerPageOptions]="[10, 20, 30]">
+</p-paginator>

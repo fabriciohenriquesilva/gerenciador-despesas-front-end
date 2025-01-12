@@ -1,0 +1,61 @@
+<div style="display: flex; justify-content: space-between">
+    <h3>{{ title }}</h3>
+    <hr>
+    <div>
+<!--        <button pButton label="Salvar" type="submit" (click)="salvar()"></button>-->
+        <button pButton label="Excluir" class="p-button-danger" (click)="excluir(formulario.get('id')?.value)"></button>
+        <button pButton label="Voltar" [routerLink]="'/categorias'"></button>
+    </div>
+</div>
+
+<hr>
+
+<div class="row justify-content-center">
+    <div class="col-6">
+        <div class="card">
+            <form [formGroup]="formulario" class="card-body" *ngIf="formulario" (submit)="cadastrar()">
+
+                <text-input formControlName="descricao" [field]="'descricao'" [label]="'Descrição da despesa'"></text-input>
+
+                <text-input
+                    formControlName="valorGasto"
+                    [field]="'valorGasto'"
+                    [label]="'Valor (R$)'"
+                ></text-input>
+
+                <div class="row mb-3">
+                    <label class="form-label">Credor da despesa</label>
+                    <div class="col-2">
+                        <input type="number" formControlName="credor" class="form-control"
+                               (change)="buscarCredor(formulario.get('credor')?.value)">
+                    </div>
+                    <div class="col">
+                        <input type="text" [value]="credorNome" class="form-control">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Data da despesa</label>
+                    <input formControlName="dataDespesa" type="date" class="form-control"/>
+
+                    <div class="mensagem__erro" *ngIf="formulario.get('dataDespesa')?.errors?.['required']
+                            && formulario.get('dataDespesa')?.touched">
+                        O campo data da despesa é obrigatório!
+                    </div>
+                </div>
+
+                <select-input
+                    formControlName="categoria"
+                    [label]="'Categoria'"
+                    [placeholder]="'Selecione uma categoria'"
+                    [key]="'id'"
+                    [expression]="'nome'"
+                    [control]="formulario.get('categoria')"
+                    [items]="(categorias$ | async)?.content!"
+                ></select-input>
+
+                <button type="submit" class="btn btn-primary">{{ action }}</button>
+            </form>
+        </div>
+    </div>
+</div>
