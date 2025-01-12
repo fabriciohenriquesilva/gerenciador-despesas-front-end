@@ -15,7 +15,7 @@ export class PessoaResolverGuard  {
     resolve(route: ActivatedRouteSnapshot,
             state: RouterStateSnapshot): Observable<Pessoa> | Promise<Pessoa> | Pessoa {
         if (route.params && route.params['id']) {
-            return this._service.loadById(route.params['id']);
+            return this._service.getById(route.params['id']);
         }
 
         return EMPTY;
